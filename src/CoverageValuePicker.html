@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +12,14 @@
     <link rel="stylesheet" href="http://localhost:3333/ria/common/css/terms.css">
     <link rel="stylesheet" href="http://localhost:3333/ria/common/css/common-glyph.css">
     <link rel="stylesheet" href="http://localhost:3333/resources/css/ui.quick.min.css">
-     <!--// common import -->
-     <link rel="stylesheet" href="css/product.css">
-     <!--[D] 임시용 적용 X -->
-     <style>
-        body{
+    <!--// common import -->
+    <link rel="stylesheet" href="css/product.css">
+    <!--[D] 임시용 적용 X -->
+    <style>
+        body {
             background-color: #fff;
             margin: 0;
-            font-family: "Noto Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
             font-size: 14px;
             line-height: 1.428571429;
             font-weight: 400;
@@ -26,147 +27,120 @@
             letter-spacing: -.5px;
             padding: 40px 30px;
         }
-     </style>
-      <!--// 임시용 적용 X -->
+    </style>
+    <!--// 임시용 적용 X -->
     <title>CoverageValuePicker.html</title>
 </head>
-<body>
-    <div class="wrap-coverage-picker">
-        
-        <div class="title-txt">
-            <strong class="item">가입금액</strong>
-            <strong class="item">보험료</strong>
-        </div>
-        <div class="slider-coverage">
-            <ul class="list-coverage" role="tablist">
-                <!--[D] li 개수 4개 이상부터 고정 너비 124px -->
-                <li class="cell-coverage" role="presentation">
-                    <!--[D] 선택된 tab 버튼에 aria-selected ="true" , default: false -->
-                    <a href="#" role="tab" class="inner-btn" aria-selected="false">
-                        <span aria-label="가입금액">
-                        사망후유장애<br>
-                        3천만<br>
-                        부상1500만<br>
-                        </span>
-                        <span class="point-orange" aria-label="보험료">4,270</span>원
-                    </a>
-                </li>
-                <li class="cell-coverage" role="presentation">
-                    <a href="#" role="tab" class="inner-btn" aria-selected="false">
-                        <span aria-label="가입금액">
-                        1,890만원<br>
-                        최저20만, 최고50만<br>
-                        </span>
-                        <span class="point-orange" aria-label="보험료">120,400</span>원
-                    </a>
-                </li>
-                <li class="cell-coverage" role="presentation">
-                    <a href="#" role="tab" class="inner-btn" aria-selected="false">
-                        <span aria-label="가입금액">
-                        1,890만원<br>
-                        최저20만, 최고50만<br>
-                        </span>
-                        <span class="point-orange" aria-label="보험료">120,400</span>원
-                    </a>
-                </li>
-                <li class="cell-coverage" role="presentation">
-                    <a href="#" role="tab" class="inner-btn" aria-selected="true">
-                        <span aria-label="가입금액">
-                        1,890만원<br>
-                        최저20만, 최고50만<br>
-                        </span>
-                        <span class="point-orange" aria-label="보험료">120,400</span>원
-                    </a>
-                </li>
-                <li class="cell-coverage" role="presentation">
-                    <a href="#" role="tab" class="inner-btn" aria-selected="false">
-                        <span aria-label="가입금액">
-                        1,890만원<br>
-                        최저20만, 최고50만<br>
-                        </span>
-                        <span class="point-orange" aria-label="보험료">120,400</span>원
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!-- max 노출개수 5개 -->
 
-        <!--[D] 커서 클릭 가능할 경우 aria-disabled="false", 기본값 true -->
-        <a href="#" role="button" class="picker-btn type-prev" aria-disabled="false"><span class="blind">이전</span></a>
-        <a href="#" role="button" class="picker-btn type-next" aria-disabled="false"><span class="blind">다음</span></a>
+<body>
+    <div class="sfd-coverage-value-picker-box">
+        <div id="coverage-value-picker1" class="sfd-coverage-value-picker">
+            <a href="#" role="button" class="slider-btn type-prev" tabindex="-1" aria-disabled="false">
+                <span class="icon">이전</span>
+            </a>
+            <div class="row-label">
+                <strong class="item" style="height: 60px;">가입금액</strong>
+                <strong class="item">보험료</strong>
+            </div>
+            <div class="slider-container">
+                <ul class="slider-list" style="margin-left: -249px;">
+                    <li class="slider-item" role="presentation" style="width: 124.5px;">
+                        <a href="#" role="tab" class="inner-btn" aria-selected="false">
+                            <p class="label" aria-label="가입금액">사망후유장애<br>3천만<br>부상1500만</p>
+                            <p class="amount" aria-label="보험료"><span>4,270</span>원</p>
+                        </a>
+                    </li>
+                    <li class="slider-item" role="presentation" style="width: 124.5px;">
+                        <a href="#" role="tab" class="inner-btn" aria-selected="false">
+                            <p class="label" aria-label="가입금액">1,890만원<br>최저20만, 최고50만<br>&nbsp;</p>
+                            <p class="amount" aria-label="보험료"><span>120,400</span>원</p>
+                        </a>
+                    </li>
+                    <li class="slider-item" role="presentation" style="width: 124.5px;">
+                        <a href="#" role="tab" class="inner-btn" aria-selected="true">
+                            <p class="label" aria-label="가입금액">사망후유장애<br>3천만<br>부상1500만<span class="sr-only">선택됨</span></p>
+                            <p class="amount" aria-label="보험료"><span>4,270</span>원</p>
+                        </a></li>
+                    <li class="slider-item" role="presentation" style="width: 124.5px;"><a href="#" role="tab" class="inner-btn"
+                            aria-selected="false">
+                            <p class="label" aria-label="가입금액">1,890만원<br>최저20만, 최고50만<br>&nbsp;</p>
+                            <p class="amount" aria-label="보험료"><span>120,400</span>원</p>
+                        </a></li>
+                    <li class="slider-item" role="presentation" style="width: 124.5px;"><a href="#" role="tab" class="inner-btn"
+                            aria-selected="false">
+                            <p class="label" aria-label="가입금액">사망후유장애<br>3천만<br>부상1500만</p>
+                            <p class="amount" aria-label="보험료"><span>4,270</span>원</p>
+                        </a></li>
+                    <li class="slider-item" role="presentation" style="width: 124.5px;"><a href="#" role="tab" class="inner-btn"
+                            aria-selected="false">
+                            <p class="label" aria-label="가입금액">사망후유장애<br>5천만<br>부상3000만</p>
+                            <p class="amount" aria-label="보험료"><span>4,270</span>원</p>
+                        </a></li>
+                </ul>
+            </div>
+            <a href="#" role="button" class="slider-btn type-next" tabindex="-1" aria-disabled="true">
+                <span class="icon">다음</span>
+            </a>
+        </div>
     </div>
-    <div class="wrap-coverage-picker">
-        <div class="title-txt">
-            <strong class="item">가입금액</strong>
-            <strong class="item">보험료</strong>
+    <div class="sfd-coverage-value-picker-box compact">
+        <div class="title">가입금액은 내게 꼭 맞게 플랜에서만 선택이 가능합니다.</div>
+        <div id="coverage-value-picker2" class="sfd-coverage-value-picker type-compact">
+            <a href="#" role="button" class="slider-btn type-prev" tabindex="-1" aria-disabled="true">
+                <span class="icon">이전</span>
+            </a>
+            <div class="row-label"><strong class="item" style="height: 20px;">가입금액</strong><strong class="item">보험료</strong></div>
+            <div class="slider-container">
+                <ul class="slider-list">
+                    <li class="slider-item" role="presentation" style="width: 67.6px;">
+                        <a href="#" role="tab" class="inner-btn" aria-selected="false" style="width: 63.6px;">
+                            <p class="label" aria-label="가입금액">1천만원</p>
+                            <p class="amount" aria-label="보험료"><span>0</span>원</p>
+                        </a>
+                    </li>
+                    <li class="slider-item" role="presentation" style="width: 67.6px;">
+                        <a href="#" role="tab" class="inner-btn" aria-selected="false" style="width: 63.6px;">
+                            <p class="label" aria-label="가입금액">2천만원</p>
+                            <p class="amount" aria-label="보험료"><span>3,620</span>원</p>
+                        </a>
+                    </li>
+                    <li class="slider-item" role="presentation" style="width: 67.6px;">
+                        <a href="#" role="tab" class="inner-btn" aria-selected="false" style="width: 63.6px;">
+                            <p class="label" aria-label="가입금액">3천만원</p>
+                            <p class="amount" aria-label="보험료"><span>4,270</span>원</p>
+                        </a>
+                    </li>
+                    <li class="slider-item" role="presentation" style="width: 67.6px;">
+                        <a href="#" role="tab" class="inner-btn" aria-selected="false" style="width: 63.6px;">
+                            <p class="label" aria-label="가입금액">4천만원</p>
+                            <p class="amount" aria-label="보험료"><span>7,320</span>원</p>
+                        </a>
+                    </li>
+                    <li class="slider-item" role="presentation" style="width: 67.6px;">
+                        <a href="#" role="tab" class="inner-btn" aria-selected="false" style="width: 63.6px;">
+                            <p class="label" aria-label="가입금액">5천만원</p>
+                            <p class="amount" aria-label="보험료"><span>9,320</span>원</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <a href="#" role="button" class="slider-btn type-next" tabindex="-1" aria-disabled="true">
+                <span class="icon">다음</span>
+            </a>
         </div>
-        <div class="slider-coverage">
-            <ul class="list-coverage" role="tablist">
-                <!--[D] li 개수 4개 이상부터 고정 너비 124px -->
-                <li class="cell-coverage" role="presentation">
-                    <!--[D] 선택된 tab 버튼에 aria-selected ="true" , default: false -->
-                    <a href="#" role="tab" class="inner-btn" aria-selected="false">
-                        <span aria-label="가입금액">
-                        사망후유장애<br>
-                        3천만<br>
-                        부상1500만<br>
-                        </span>
-                        <span class="point-orange" aria-label="보험료">4,270</span>원
-                    </a>
-                </li>
-                <li class="cell-coverage" role="presentation">
-                    <a href="#" role="tab" class="inner-btn" aria-selected="false">
-                        <span aria-label="가입금액">
-                        1,890만원<br>
-                        최저20만, 최고50만<br>
-                        </span>
-                        <span class="point-orange" aria-label="보험료">120,400</span>원
-                    </a>
-                </li>
-                <li class="cell-coverage" role="presentation">
-                    <a href="#" role="tab" class="inner-btn" aria-selected="false">
-                        <span aria-label="가입금액">
-                        1,890만원<br>
-                        최저20만, 최고50만<br>
-                        </span>
-                        <span class="point-orange" aria-label="보험료">120,400</span>원
-                    </a>
-                </li>
-                <!-- <li class="cell-coverage" role="presentation">
-                    <a href="#" role="tab" class="inner-btn" aria-selected="true">
-                        <span aria-label="가입금액">
-                        1,890만원<br>
-                        최저20만, 최고50만<br>
-                        </span>
-                        <span class="point-orange" aria-label="보험료">120,400</span>원
-                    </a>
-                </li>
-                <li class="cell-coverage" role="presentation">
-                    <a href="#" role="tab" class="inner-btn" aria-selected="false">
-                        <span aria-label="가입금액">
-                        1,890만원<br>
-                        최저20만, 최고50만<br>
-                        </span>
-                        <span class="point-orange" aria-label="보험료">120,400</span>원
-                    </a>
-                </li> -->
-            </ul>
-        </div>
-        <!-- max 노출개수 5개 -->
-        <a href="#" role="button" class="picker-btn type-prev" aria-disabled="true"><span class="blind">이전</span></a>
-        <a href="#" role="button" class="picker-btn type-next" aria-disabled="true"><span class="blind">다음</span></a>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
-        $('.cell-coverage').on('click','.inner-btn',function(e){
+        $('.cell-coverage').on('click', '.inner-btn', function (e) {
             var selected = $(this).attr('aria-selected');
-            if(selected == 'true'){
-                $(this).attr('aria-selected','false');
-            }else{
+            if (selected == 'true') {
+                $(this).attr('aria-selected', 'false');
+            } else {
                 $(this).attr('aria-selected', 'true');
             }
-            
+
         })
     </script>
 </body>
+
 </html>

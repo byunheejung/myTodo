@@ -25,33 +25,51 @@ ul, ol {
   overflow-y: scroll;
   width: 100%;
 }*/
-.wrap-coverage-picker {
-	position: relative;
+.sfd-coverage-value-picker-box {
+	width: 652px;
 	border: 2px solid #e7ecf0;
-	padding: 30px 75px 0 75px;
-	height: 204px;
+	margin: 30px 0 30px 30px;
+	padding: 30px 25px;
 }
 
-.wrap-coverage-picker .title-txt {
-	padding-top: 46px;
+.sfd-coverage-value-picker-box.compact {
+	width: 462px;
+	height: 178px;
+	border: 2px solid #e7ecf0;
+	margin: 30px 0 30px 30px;
+	padding: 20px 20px;
+}
+
+.sfd-coverage-value-picker-box.compact .title {
+	margin-bottom: 15px;
+}
+
+.sfd-coverage-value-picker {
+	position: relative;
+	padding: 0 50px;
+}
+
+.sfd-coverage-value-picker .row-label {
+	top: 48px;
 	position: absolute;
-	left: 26px;
-	top: 30px;
+	left: 0;
 	font-size: 13px;
 }
 
-.wrap-coverage-picker .title-txt .item {
+.sfd-coverage-value-picker .row-label .item {
 	display: block;
 	font-weight: 400;
+	line-height: 20px;
+	margin-bottom: 2px;
 }
 
-.wrap-coverage-picker .slider-coverage {
+.sfd-coverage-value-picker .slider-container {
 	position: relative;
 	overflow: hidden;
 	font-size: 0;
 }
 
-.wrap-coverage-picker .slider-coverage:before {
+.sfd-coverage-value-picker .slider-container:before {
 	content: '';
 	position: absolute;
 	width: 100%;
@@ -62,13 +80,13 @@ ul, ol {
 	border-radius: 3px;
 }
 
-.wrap-coverage-picker .list-coverage {
+.sfd-coverage-value-picker .slider-list {
 	display: table;
 	width: 100%;
 	table-layout: fixed;
 }
 
-.wrap-coverage-picker .cell-coverage {
+.sfd-coverage-value-picker .slider-item {
 	display: table-cell;
 	text-align: center;
 	width: 124px;
@@ -76,29 +94,39 @@ ul, ol {
 	padding-top: 33px;
 }
 
-.wrap-coverage-picker .inner-btn {
+.sfd-coverage-value-picker .inner-btn {
 	position: relative;
 	display: inline-block;
 	width: 120px;
-	height: 103px;
 	line-height: 20px;
 	color: #353942;
 	text-decoration: none;
 	font-weight: 400;
-	padding-top: 13px;
+	padding: 13px 3px 12px;
+	border: 1px solid transparent;
 	vertical-align: top;
 	font-size: 14px;
+	border-radius: 2px;
 }
 
-.wrap-coverage-picker .inner-btn .point-orange {
+.sfd-coverage-value-picker .inner-btn .label {
+	color: #000;
+	margin-bottom: 2px;
+}
+
+.sfd-coverage-value-picker .inner-btn p {
+	margin: 0;
+}
+
+.sfd-coverage-value-picker .inner-btn .amount span {
 	color: #fd6e0e;
 }
 
-.wrap-coverage-picker .inner-btn:before {
+.sfd-coverage-value-picker .inner-btn:before {
 	content: '';
 	position: absolute;
 	left: 0;
-	top: -31px;
+	top: -30px;
 	right: 0;
 	width: 18px;
 	height: 18px;
@@ -109,16 +137,26 @@ ul, ol {
 	box-sizing: border-box;
 }
 
-.wrap-coverage-picker .inner-btn[aria-selected="true"] {
+.sfd-coverage-value-picker .inner-btn:hover:before {
+	background-color: #f3f3f3;
+}
+
+.sfd-coverage-value-picker .inner-btn[aria-selected="true"] {
 	font-weight: 500;
 	border: 1px solid #ff7800;
 }
 
-.wrap-coverage-picker .inner-btn[aria-selected="true"]:before {
+.sfd-coverage-value-picker .inner-btn[aria-selected="true"]:before {
+	content: ' ';
 	border: 3px solid #ff7800;
+	top: -30px;
 }
 
-.wrap-coverage-picker .inner-btn[aria-selected="true"]:after {
+.sfd-coverage-value-picker .inner-btn[aria-selected="true"]:hover:before {
+	background-color: #fff;
+}
+
+.sfd-coverage-value-picker .inner-btn[aria-selected="true"]:after {
 	content: '';
 	position: absolute;
 	left: 0;
@@ -126,59 +164,174 @@ ul, ol {
 	margin: auto;
 	bottom: 100%;
 	background-color: #fff;
-	background-image: url(../img/sp_ico.png);
-	background-size: 80px 54px;
-	background-position: -68px 0px;
+	background-image: url(/ria/pc/product/common/image/sprites-coverage-value-picker.png);
+	background-size: 50px 40px;
+	background-position: -28px -4px;
 	width: 12px;
 	height: 12px;
 }
 
-.wrap-coverage-picker .picker-btn {
+.sfd-coverage-value-picker .inner-btn[aria-selected="true"]:focus {
+	outline: none;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	.sfd-coverage-value-picker .inner-btn[aria-selected="true"]:after {
+		background-image: url(/ria/pc/product/common/image/sprites-coverage-value-picker@2x.png);
+		background-size: 50px 40px;
+		background-position: -28px -4px;
+	}
+}
+
+.sfd-coverage-value-picker .animating .inner-btn[aria-selected="true"] {
+	border-color: transparent;
+}
+
+.sfd-coverage-value-picker .animating .inner-btn[aria-selected="true"]:after {
+	display: none;
+}
+
+.sfd-coverage-value-picker .animation-inner-btn {
+	position: relative;
+	display: inline-block;
+	width: 120px;
+	line-height: 20px;
+	color: #353942;
+	font-weight: 400;
+	padding: 13px 3px 12px;
+	vertical-align: top;
+	font-size: 14px;
+	border: 1px solid #ff7800;
+	border-radius: 2px;
+}
+
+.sfd-coverage-value-picker .animation-inner-btn:after {
+	content: '';
 	position: absolute;
-	width: 60px;
-	height: 50px;
-	top: 30px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	bottom: 100%;
+	background-color: #fff;
+	background-image: url(/ria/pc/product/common/image/sprites-coverage-value-picker.png);
+	background-size: 50px 40px;
+	background-position: -28px -4px;
+	width: 12px;
+	height: 12px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	.sfd-coverage-value-picker .animation-inner-btn:after {
+		background-image: url(/ria/pc/product/common/image/sprites-coverage-value-picker@2x.png);
+		background-size: 50px 40px;
+		background-position: -28px -4px;
+	}
+}
+
+.sfd-coverage-value-picker .slider-btn {
+	position: absolute;
+	width: 30px;
+	height: 25px;
+	top: 1px;
 	cursor: not-allowed;
+	border: 1px solid #919ca5;
+	border-radius: 2px;
+	opacity: 0.5;
+	background-color: #fff;
 }
 
-.wrap-coverage-picker .picker-btn.type-prev {
+.sfd-coverage-value-picker .slider-btn .icon {
+	background-image: url(/ria/pc/product/common/image/sprites-coverage-value-picker.png);
+	background-size: 50px 40px;
+	color: transparent;
+	font-size: 0;
+	width: 7px;
+	height: 13px;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	.sfd-coverage-value-picker .slider-btn .icon {
+		background-image: url(/ria/pc/product/common/image/sprites-coverage-value-picker@2x.png);
+		background-size: 50px 40px;
+	}
+}
+
+.sfd-coverage-value-picker .slider-btn.type-prev {
 	position: absolute;
-	left: 24px;
-	background-image: url(../img/sp_ico.png);
-	background-size: 80px 54px;
-	background-position: 0px -29px;
-	width: 30px;
-	height: 25px;
+	left: 0;
 }
 
-.wrap-coverage-picker .picker-btn.type-next {
+.sfd-coverage-value-picker .slider-btn.type-prev .icon {
 	position: absolute;
-	right: 24px;
-	background-image: url(../img/sp_ico.png);
-	background-size: 80px 54px;
-	background-position: -34px -29px;
-	width: 30px;
-	height: 25px;
+	left: 10px;
+	top: 5px;
+	background-position: -4px -20px;
 }
 
-.wrap-coverage-picker .picker-btn.type-next[aria-disabled="false"] {
-	background-image: url(../img/sp_ico.png);
-	background-size: 80px 54px;
-	background-position: -34px 0px;
-	width: 30px;
-	height: 25px;
+.sfd-coverage-value-picker .slider-btn.type-next {
+	position: absolute;
+	right: 0;
 }
 
-.wrap-coverage-picker .picker-btn.type-prev[aria-disabled="false"] {
-	background-image: url(../img/sp_ico.png);
-	background-size: 80px 54px;
-	background-position: 0px 0px;
-	width: 30px;
-	height: 25px;
+.sfd-coverage-value-picker .slider-btn.type-next .icon {
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	background-position: -16px -20px;
 }
 
-.wrap-coverage-picker .picker-btn[aria-disabled="false"] {
+.sfd-coverage-value-picker .slider-btn[aria-disabled="false"] {
 	cursor: pointer;
+	opacity: 1.0;
+}
+
+.sfd-coverage-value-picker .slider-btn[aria-disabled="false"]:hover {
+	background-color: #f3f3f3;
+}
+
+.sfd-coverage-value-picker .slider-btn[aria-disabled="false"].type-next {
+	border-color: #ff7800;
+}
+
+.sfd-coverage-value-picker .slider-btn[aria-disabled="false"].type-next .icon {
+	background-position: -16px -4px;
+}
+
+.sfd-coverage-value-picker .slider-btn[aria-disabled="false"].type-prev {
+	border-color: #ff7800;
+}
+
+.sfd-coverage-value-picker .slider-btn[aria-disabled="false"].type-prev .icon {
+	background-position: -4px -4px;
+}
+
+.sfd-coverage-value-picker.type-compact {
+	padding: 0 40px;
+}
+
+.sfd-coverage-value-picker.type-compact .row-label {
+	top: 47px;
+}
+
+.sfd-coverage-value-picker.type-compact .row-label .item {
+	letter-spacing: -1px;
+	font-size: 12px;
+}
+
+.sfd-coverage-value-picker.type-compact .slider-item .label {
+	letter-spacing: -0.5px;
+}
+
+.sfd-coverage-value-picker.type-compact .slider-btn {
+	width: 20px;
+}
+
+.sfd-coverage-value-picker.type-compact .slider-btn.type-prev .icon {
+	left: 5px;
+}
+
+.sfd-coverage-value-picker.type-compact .slider-btn.type-next .icon {
+	right: 5px;
 }
 
 /*# sourceMappingURL=map/product.css.map */
