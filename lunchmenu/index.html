@@ -13,7 +13,7 @@
         <h1 class="title"><span class="today-menu">오늘의 밥밥밥</span><span class="spoon"></span></h1>
         <h2 v-if="this.todayLunch" class="today-lunch">오늘의 메뉴는 {{todayLunch}} 입니다</h2>
         <div class="wrap-ipt">
-            <select v-model="selected">
+            <select v-model="selected" @change="selectChange(selected)">
                 <option v-for="option in options" v-bind:value="option.value">{{option.text}}</option>
             </select>
             <input type="text" class="ipt-lunch" v-model="newMenu" v-on:keyup.13="addLunch">
@@ -34,6 +34,14 @@
                 </div>
             </div>
         </div>
+        <div class="wrap-modal" v-if="this.showPopup">
+            <div class="modal-box">
+                <strong class="tit-modal">새로운 음식점을 등록해 주세요</strong>
+                <input type="text" placeholder="새로운 음식점을 등록해 주세요" class="ipt-newmenu">
+                <button type="button" class="btn-close" @click="closePopup()">팝업닫기</button>
+                <button type="button" class="btn-save">등록</button>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
@@ -52,7 +60,8 @@
                     {value: 'dinner', text: '석식메뉴 버전'},
                     {value: 'soju', text: '회식 버전'},
                     {value: 'new', text: '새롭게'}
-                ]
+                ],
+                showPopup: false,
             },
             mounted() {
                 if(localStorage.getItem('lunch')) {
@@ -74,6 +83,14 @@
                 
             },
             methods: {
+                selectChange(selected) {
+                    if(selected == 'new'){
+                        this.showPopup = true;
+                    }
+                },
+                closePopup() {
+                    this.showPopup = false;
+                },
                 spinLunch() {
                     if(this.lunchMenu.length > 0) {
                         let that = this;
