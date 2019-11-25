@@ -9,40 +9,42 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="lunchCanvas">
-        <h1 class="title"><span class="today-menu">오늘의 밥밥밥</span><span class="spoon"></span></h1>
-        <h2 v-if="this.todayLunch" class="today-lunch">오늘의 메뉴는 <span v-bind:style="{color: currentTxtColor}">{{todayLunch}}</span> 입니다</h2>
-        <div class="wrap-ipt">
-            <select v-model="selected" @change="selectChange(selected)">
-                <option v-for="option in options" v-bind:value="option.value">{{option.text}}</option>
-            </select>
-            <input type="text" class="ipt-lunch" v-model="newMenu" v-on:keyup.13="addLunch">
-            <button @click="addLunch" class="btn-add">메뉴추가</button>
-            <button class="btn-spin" @click="spinLunch()" v-if="this.lunchMenu.length > 0">오늘 뭐먹을지 돌려보자</button>
-        </div>
-        <div class="wrap-lunchbox">
+    <section id="lunchCanvas">
+        <section class="container">
+            <h1 class="title"><span class="today-menu">오늘의 밥밥밥</span><span class="spoon"></span></h1>
+            <h2 v-if="this.todayLunch" class="today-lunch">오늘의 메뉴는 <span v-bind:style="{color: currentTxtColor}">{{todayLunch}}</span> 입니다</h2>
+            <section class="wrap-ipt">
+                <select v-model="selected" @change="selectChange(selected)">
+                    <option v-for="option in options" v-bind:value="option.value">{{option.text}}</option>
+                </select>
+                <input type="text" class="ipt-lunch" v-model="newMenu" v-on:keyup.13="addLunch">
+                <button @click="addLunch" class="btn-add">메뉴추가</button>
+                <button class="btn-spin" @click="spinLunch()" v-if="this.lunchMenu.length > 0">오늘 뭐먹을지 돌려보자</button>
+            </section>
+            <section class="wrap-lunch">
+                <div class="arrow" v-if="this.lunchMenu.length > 0"></div>
+                <div class="lunchCircle">
+                    <canvas id="lunchMenuCircle" width="500" height="500"></canvas>
+                </div>
+            </section>
+            <section class="wrap-modal" v-if="this.showPopup">
+                <div class="modal-box">
+                    <strong class="tit-modal">새로운 카테고리를 등록해 주세요</strong>
+                    <input type="text" placeholder="새로운 카테고리를 등록해 주세요" class="ipt-newmenu">
+                    <button type="button" class="btn-close" @click="closePopup()">팝업닫기</button>
+                    <button type="button" class="btn-save">등록</button>
+                </div>
+            </section>
+        </section>
+        <aside class="sidebar" v-if="this.lunchMenu.length > 0">
             <div class="list-lunch">
                 <div class="current-lunch" v-for="(lunch, n) in lunchMenu">
                     <strong class="name">{{lunch}}</strong>
                     <button @click="removeLunch(n)" class="btn-delete">삭제</button>
                 </div>
             </div>
-            <div class="wrap-lunch">
-                <div class="arrow" v-if="this.lunchMenu.length > 0"></div>
-                <div class="lunchCircle">
-                    <canvas id="lunchMenuCircle" width="500" height="500"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="wrap-modal" v-if="this.showPopup">
-            <div class="modal-box">
-                <strong class="tit-modal">새로운 카테고리를 등록해 주세요</strong>
-                <input type="text" placeholder="새로운 카테고리를 등록해 주세요" class="ipt-newmenu">
-                <button type="button" class="btn-close" @click="closePopup()">팝업닫기</button>
-                <button type="button" class="btn-save">등록</button>
-            </div>
-        </div>
-    </div>
+        </aside>
+    </section>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         var app = new Vue({
@@ -94,9 +96,9 @@
                     this.selected = 'default';
                 },
                 spinLunch() {
+                    let that = this;
+                    let rand2 = Math.floor(Math.abs(Math.random() * 10000)) + (360/this.lunchMenu.length) + 1;
                     if(this.lunchMenu.length > 0) {
-                        let that = this;
-                        let rand2 = Math.floor(Math.abs(Math.random() * 10000)) + 1;
                         const canvas = document.querySelector('.lunchCircle');
                         canvas.style.transform = "rotate("  + rand2 + "deg)"
                         // canvas의 트랜지션 이벤트가 끝나고 나서 saveCurrentWheel 메서드 실행

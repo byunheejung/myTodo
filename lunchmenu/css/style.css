@@ -22,6 +22,7 @@ html {
 
 body,html{
     background-color: #fff;
+    height: 100%;
 }
 
 table {
@@ -77,6 +78,10 @@ ul,li,dl,dt,dd,ol,li{
 h1{
     text-align: center;
 }
+#lunchCanvas{
+    height: 100%;
+    display: flex;
+}
 .wrap-ipt{
     padding: 10px;
     width: 700px;
@@ -99,6 +104,7 @@ h1{
 .lunchCircle{
     width: 500px;
     transition: all 1s ease-out;
+    margin: 0 auto;
 }
 .wrap-lunch{
     position: relative;
@@ -127,22 +133,21 @@ h1{
     padding: 0 10px;
 }
 .wrap-lunchbox{
-    display: flex;
-    padding: 40px;
 }
 .list-lunch{
-    flex: 1;
+    
 }
 .current-lunch{
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #eee;
+    color: #fff;
 }
 .name{
     padding: 7px;
 }
 .btn-delete{
-    background-color: navy;
+    background-color: #F27B35;
     color: #fff;
     min-width: 45px;
     padding: 7px;
@@ -207,4 +212,14 @@ h1{
         width: 100px;
         line-height: 50px;
         margin: 20px auto;
+    }
+    .container{
+        flex: 1;
+    }
+    .sidebar{
+        padding: 20px;
+        background-color: rgba(0,0,0,0.7);
+        max-heigt: 100%;
+        oveflow-y: scroll;
+        width: 300px;
     }
