@@ -11,7 +11,7 @@
 <body>
     <div id="lunchCanvas">
         <h1 class="title"><span class="today-menu">오늘의 밥밥밥</span><span class="spoon"></span></h1>
-        <h2 v-if="this.todayLunch" class="today-lunch">오늘의 메뉴는 {{todayLunch}} 입니다</h2>
+        <h2 v-if="this.todayLunch" class="today-lunch">오늘의 메뉴는 <span v-bind:style="{color: currentTxtColor}">{{todayLunch}}</span> 입니다</h2>
         <div class="wrap-ipt">
             <select v-model="selected" @change="selectChange(selected)">
                 <option v-for="option in options" v-bind:value="option.value">{{option.text}}</option>
@@ -62,6 +62,7 @@
                     {value: 'new', text: '새롭게'}
                 ],
                 showPopup: false,
+                currentTxtColor: '#000'
             },
             mounted() {
                 if(localStorage.getItem('lunch')) {
@@ -115,6 +116,7 @@
                     for(var i = 0; i < len; i++) {
                         if(randomDeg > this.saveWheel[i].deg && this.saveWheel[i].deg + sliceDeg > randomDeg){
                             this.todayLunch = this.saveWheel[i].menu;
+                            this.currentTxtColor = this.saveWheel[i].color;
                         }
                     }
                 },
@@ -195,7 +197,8 @@
                         var menu = this.lunchMenu[i]
                         var currentWheel = {
                             'deg' : deg,
-                            'menu' : menu
+                            'menu' : menu,
+                            'color' : this.getColor(i, len)
                         }
                         this.drawCanvas(deg, this.getColor(i, len));  
                         this.drawCanvasText(deg + sliceDeg/2 , this.lunchMenu[i]);
