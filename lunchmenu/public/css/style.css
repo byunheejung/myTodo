@@ -223,3 +223,7 @@ h1{
         oveflow-y: scroll;
         width: 300px;
     }
+    #map{
+        width: 100%;
+        height: 500px;
+    }
