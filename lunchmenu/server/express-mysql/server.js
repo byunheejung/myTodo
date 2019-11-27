@@ -21,20 +21,18 @@ app.get('/', function(req, res) {
 });
 
 app.post('/registGroup', function(req, res) {
-  
-console.log('들어왔다');
 console.log(req.body);
-  var grouplist = [req.body.groupid,
+  var grouplist = [req.body.groupname,
                    req.body.groupname];
 
   connection.query('INSERT INTO MENU_GROUP (group_id, group_name) VALUES (?, ?)', grouplist, function (error, result) {
     if (error) {
-      console.log('error');
+      console.log('group insert error');
     } else {
-      console.log('success');
+      console.log('group insert success');
     }
 
-    res.send('success');
+    res.send(console.log('그룹 메뉴 추가가 완료되었습니다'));
   });
 });
 
@@ -48,17 +46,6 @@ console.log(req.body);
 
 //     res.send('success');
 //   });
-// });
-
-// app.get('/', function(req, res) {
-//   // connection.query('SELECT * from Persons', function(err, rows) {
-//   //   if (err) {
-//   //     throw err;
-//   //   }
-
-//   //   console.log('The SOlution is : ', rows);
-//   //   res.send(rows);
-//   // });
 // });
 
 app.listen(app.get('port'), function() {
