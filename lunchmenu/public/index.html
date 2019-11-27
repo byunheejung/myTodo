@@ -12,7 +12,9 @@
     <section id="lunchCanvas">
         <section class="container">
             <h1 class="title"><span class="today-menu">오늘의 밥밥밥</span><span class="spoon"></span></h1>
-            <h2 v-if="this.todayLunch" class="today-lunch">오늘의 메뉴는 <span v-bind:style="{color: currentTxtColor}">{{todayLunch}}</span> 입니다</h2>
+            <h2 v-if="this.todayLunch" class="today-lunch">
+                오늘의 메뉴는 <span v-bind:style="{color: currentTxtColor}">{{todayLunch}}</span> 입니다
+            </h2>
             <section class="wrap-ipt">
                 <select v-model="selected" @change="selectChange(selected)">
                     <option v-for="option in options" v-bind:value="option.value">{{option.text}}</option>
@@ -158,7 +160,7 @@
                             map: map,
                             position: new kakao.maps.LatLng(place.y, place.x) 
                         });
-
+                        console.log(place);
                         // 마커에 클릭이벤트를 등록합니다
                         kakao.maps.event.addListener(marker, 'click', function() {
                             // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
