@@ -30,12 +30,14 @@
                 </div>
             </section>
             <section class="wrap-modal" v-if="this.showPopup">
-                <div class="modal-box">
-                    <strong class="tit-modal">새로운 카테고리를 등록해 주세요</strong>
-                    <input type="text" placeholder="새로운 카테고리를 등록해 주세요" class="ipt-newmenu">
-                    <button type="button" class="btn-close" @click="closePopup()">팝업닫기</button>
-                    <button type="button" class="btn-save">등록</button>
-                </div>
+                <form method="post" action="/registGroup">
+                    <div class="modal-box">
+                        <strong class="tit-modal">새로운 카테고리를 등록해 주세요</strong>
+                        <input type="text" placeholder="새로운 카테고리를 등록해 주세요" class="ipt-newmenu" name="groupname">
+                        <button type="button" class="btn-close" @click="closePopup()">팝업닫기</button>
+                        <button type="submit" class="btn-save">등록</button>
+                    </div>
+                </form>
             </section>
             <section id="map"></section>
         </section>
@@ -53,14 +55,11 @@
             <button type="submit">리스트확인</button>
         </form> -->
 
-        <form method="post" action="/registGroup">
+        <!-- <form method="post" action="/registGroup">
             group_id <input type="text" id="groupid" name="groupid"/>
             group_name <input type="text" id="groupname" name="groupname"/>
             <button type="submit">그룹추가</button>
-            <!-- <button @click="" class="btn-delete-group">그룹삭제</button> -->
-            <!-- <button @click="" class="btn-add-group">그룹추가</button>
-            <button @click="" class="btn-add-group">그룹추가</button> -->
-        </form>
+        </form> -->
     </section>
     <!-- 라이브러리를 먼저 로드해야 되네 개어이 -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b9adc409c9d581ba11c670e483964152&libraries=services,clusterer,drawing"></script>
