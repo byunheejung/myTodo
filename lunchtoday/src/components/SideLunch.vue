@@ -13,7 +13,6 @@
 export default {
   name: 'SideLunch',
   props: {
-    // msg: String
   }
 }
 </script>

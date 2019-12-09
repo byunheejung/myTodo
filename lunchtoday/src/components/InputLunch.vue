@@ -1,7 +1,7 @@
 <template>
     <section class="wrap-ipt">
-        <select>
-            <!-- <option v-for="option in options" v-bind:value="option.value">{{option.text}}</option> -->
+        <select v-model="selected" @change="selectChange(selected)">
+            <option v-for="option in lunchGroup" v-bind:key="option.value">{{option.text}}</option>
         </select>
         <input type="text" class="ipt-lunch">
         <button class="btn-add">메뉴추가</button>
@@ -12,8 +12,23 @@
 <script>
 export default {
   name: 'InputLunch',
+  data() {
+    return {
+      selected: 'default'
+    }
+  },
   props: {
-    // msg: String
+    lunchGroup: null
+  },
+  created() {
+    this.lunchGroup = this.$store.state.options;
+  },
+  methods: {
+    selectChange(selected) {
+        if(selected == 'new'){
+            this.showPopup = true;
+        }
+    }
   }
 }
 </script>
