@@ -2,6 +2,7 @@
   <div id="lunchCanvas">
     <section class="container">
       <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <ViewToday />
       <InputLunch />
       <LunchCanvas />
     </section>
@@ -15,6 +16,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
 import LunchCanvas from '@/components/LunchCanvas.vue'
 import InputLunch from '@/components/InputLunch.vue'
 import SideLunch from '@/components/SideLunch.vue'
+import ViewToday from '@/components/ViewToday.vue'
 
 export default {
   name: 'home',
@@ -22,7 +24,8 @@ export default {
     HelloWorld,
     LunchCanvas,
     InputLunch,
-    SideLunch
+    SideLunch,
+    ViewToday
   }
 }
 </script>
