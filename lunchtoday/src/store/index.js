@@ -22,6 +22,9 @@ export default new Vuex.Store({
     currentTxtColor: '#000',
   },
   mutations: {
+    updateCurrentSelect (state, message) {
+      state.selected = message;
+    }
   },
   actions: {
   },
