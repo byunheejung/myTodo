@@ -3,7 +3,7 @@
         <select v-model="defaultLunchGroup">
             <option v-for="option in setLunchGroup" v-bind:key="option.value">{{option.text}}</option>
         </select>
-        <input type="text" class="ipt-lunch">
+        <input type="text" class="ipt-lunch" v-model="newMenu" v-on:keyup.13="addLunch">
         <button class="btn-add">메뉴추가</button>
         <button class="btn-spin">오늘 뭐먹을지 돌려보자</button>
     </section>
@@ -14,6 +14,11 @@ export default {
   name: 'InputLunch',
   created() {
     
+  },
+  data() {
+    return {
+      newMenu: null
+    }
   },
   computed: {
     setLunchGroup() {
@@ -30,9 +35,12 @@ export default {
     }
   },
   methods: {
-    selectChange(value) {
-      this.selected = value;
-    },
+    addLunch() {
+      if(this.newMenu == null){
+        return;
+      }
+      this.$store.commit('updateLunchList', this.newMenu);
+    }
   }
 }
 </script>

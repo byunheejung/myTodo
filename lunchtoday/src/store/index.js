@@ -3,27 +3,56 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+const loadLunchMenu = () => {
+  try {
+    const lunchState = JSON.parse(localStorage.getItem('lunch'));
+    if(lunchState === null) {
+      return undefined;
+    }
+    return lunchState;
+  } catch(err) {
+      return undefined;
+  }
+}
+const loadLunchGroup = () => {
+  try {
+    const lunchGroup = JSON.parse(localStorage.getItem('lunchGroup'));
+    if(lunchGroup === null) {
+      return undefined;
+    }
+    return lunchGroup;
+  } catch(err) {
+      return undefined;
+  }
+}
+
+const saveLunch = (state) => {
+  try{
+    const lunchItem = JSON.stringify(state);
+    localStorage.setItem('lunch', lunchItem);
+  } catch(err) {
+    localStorage.removeItem('lunch');
+  }
+}
+
 export default new Vuex.Store({
   state: {
-    lunchMenu: [],
-    newMenu : null,
-    saveWheel : null,
-    todayLunch : null,
-    randomDeg : null,
-    selected: 'default',
-    options: [
-        {value: 'default', text: '버전을 골라주세요'},
-        {value: 'lunch', text: '점심메뉴 버전'},
-        {value: 'dinner', text: '석식메뉴 버전'},
-        {value: 'soju', text: '회식 버전'},
-        {value: 'new', text: '새롭게'}
-    ],
-    showPopup: false,
-    currentTxtColor: '#000',
+    // 전체 메뉴 초기 get
+    lunchMenu: loadLunchMenu() || [],
+    // options get
+    options: loadLunchGroup() || []
   },
   mutations: {
+    // 이건 일단 예제로 만들기
     updateCurrentSelect (state, message) {
       state.selected = message;
+    },
+    updateLunchList(state, message) {
+      state.lunchMenu = [
+        ...state.lunchMenu,
+        message
+      ]
+      saveLunch(state.lunchMenu);
     }
   },
   actions: {
