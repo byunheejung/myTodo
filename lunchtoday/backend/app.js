@@ -2,12 +2,11 @@
 
 const express = require('express');
 const app = express();
-const mysql = require('mysql');
+const mysql = require('./mysql-db');
 
 let port = 3000;
 
 const indexRouter = require('./routes/index');
-const history = require('connect-history-api-fallback');
 
 app.listen(port, () => {
     console.log('서버가 ${port}에서 동작중입니다.');
@@ -16,18 +15,10 @@ app.listen(port, () => {
 app.use(express.static('public'));
 app.use('/', indexRouter);
 
+const history = require('connect-history-api-fallback');
 app.use(history());
 
-// connection 객체 생성
-const connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '1720',
-    port     : '3306',
-    database : 'lunchmenu'
-});
-
-connection.connect(function(err) {
+mysql.connect(function(err) {
     if (err) {
         console.error('mysql connection error');
         console.error(err);
@@ -37,12 +28,15 @@ connection.connect(function(err) {
     }
 });
 
-connection.query('SELECT * FROM MENU_GROUP', function(err, result) {
-    if (err) {
-        throw err;
-    }
-    console.log('The Solution is: ', result);
-});
+// connection.query('SELECT * FROM MENU_GROUP', function(err, result) {
+//     if (err) {
+//         throw err;
+//     }
+//     console.log('The Solution is: ', result);
+// });
+
+// 연결을 했단 말이지.. 그러면 이제 무엇을 해야 하는가
+
 
 // app.post('/regist', function(req, res) {
 //     const user = {
