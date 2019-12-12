@@ -47,7 +47,8 @@ export default new Vuex.Store({
     updateCurrentSelect (state, message) {
       state.selected = message;
     },
-    updateLunchList(state, message) {
+    // lunch list add
+    addLunchList(state, message) {
       state.lunchMenu = [
         ...state.lunchMenu,
         message

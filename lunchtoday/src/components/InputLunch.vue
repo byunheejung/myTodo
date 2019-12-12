@@ -4,7 +4,7 @@
             <option v-for="option in setLunchGroup" v-bind:key="option.value">{{option.text}}</option>
         </select>
         <input type="text" class="ipt-lunch" v-model="newMenu" v-on:keyup.13="addLunch">
-        <button class="btn-add">메뉴추가</button>
+        <button class="btn-add" @click="addLunch">메뉴추가</button>
         <button class="btn-spin">오늘 뭐먹을지 돌려보자</button>
     </section>
 </template>
@@ -38,8 +38,12 @@ export default {
     addLunch() {
       if(this.newMenu == null){
         return;
+      } else {
+        // vuex store addLunch 커밋하고
+        this.$store.commit('addLunchList', this.newMenu);
+        // 인풋 초기화
+        this.newMenu = '';
       }
-      this.$store.commit('updateLunchList', this.newMenu);
     }
   }
 }
