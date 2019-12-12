@@ -42,11 +42,10 @@ export default new Vuex.Store({
     // options get
     options: loadLunchGroup() || [],
     saveWheel: [],
+    todayLunch: null,
+    currentTxtColor: null,
   },
   getters: {
-    getSaveWheel: function (state) {
-      return state.saveWheel;
-    }
   },
   mutations: {
     // 이건 일단 예제로 만들기
@@ -63,6 +62,10 @@ export default new Vuex.Store({
     },
     updateSaveWheel(state, message) { // save 정보 state update
       state.saveWheel = message
+    },
+    updateResult(state, message){
+      state.todayLunch = message.menu;
+      state.currentTxtColor = message.color;
     }
   },
   actions: {

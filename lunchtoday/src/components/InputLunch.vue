@@ -21,9 +21,7 @@ export default {
   data() {
     return {
       newMenu: null,
-      lunchMenu: this.$store.state.lunchMenu,  
-      todayLunch: null,
-      currentTxtColor: null,
+      lunchMenu: this.$store.state.lunchMenu,
     }
   },
   computed: {
@@ -42,9 +40,6 @@ export default {
     setSaveWheel: {
       get: function() {
           return this.$store.state.saveWheel;
-      },
-      set: function(value) {
-        return value
       }
     }
   },
@@ -65,7 +60,8 @@ export default {
           const canvas = document.querySelector('.lunchCircle');
           canvas.style.transform = "rotate("  + rand2 + "deg)"
           // canvas의 트랜지션 이벤트가 끝나고 나서 saveCurrentWheel 메서드 실행
-          // this bind 문제 때문에 arrow function을 사용, arrow function을 사용 하면 arrow function 안에서의 this는 obj를 가리키기 때문에 scope 변화 없음.
+          // this bind 문제 때문에 arrow function을 사용, arrow function을 사용 하면
+          // arrow function 안에서의 this는 obj를 가리키기 때문에 scope 변화 없음.
           canvas.addEventListener('webkitTransitionEnd',() => {
               this.saveCurrentWheel(rand2);
           }, false);
@@ -82,8 +78,8 @@ export default {
         
         for(var i = 0; i < len; i++) {
             if(randomDeg > saveWheel[i].deg && saveWheel[i].deg + sliceDeg > randomDeg){
-                this.todayLunch = saveWheel[i].menu; // 얘는 컴포넌트 단에서만 알면 되
-                this.currentTxtColor = saveWheel[i].color;// 얘는 컴포넌트 단에서만 알면 되
+                // 정말 이딴식으로 하는것이 맞는가?
+                this.$store.commit('updateResult', {'menu': saveWheel[i].menu, 'color': saveWheel[i].color});
             }
         }
     },

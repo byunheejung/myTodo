@@ -1,6 +1,6 @@
 <template>
     <h2 class="today-lunch">
-        오늘의 메뉴는 입니다.
+        오늘의 메뉴는 {{todayLunch}}입니다.
     </h2>
 </template>
 
@@ -9,6 +9,11 @@ export default {
   name: 'ViewToday',
   props: {
     // msg: String
+  },
+  computed: {
+    todayLunch() {
+      return this.$store.state.todayLunch;
+    }
   }
 }
 </script>
