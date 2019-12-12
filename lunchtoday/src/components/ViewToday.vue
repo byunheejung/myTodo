@@ -1,6 +1,6 @@
 <template>
     <h2 class="today-lunch">
-        오늘의 메뉴는 {{}} 입니다.
+        오늘의 메뉴는 입니다.
     </h2>
 </template>
 

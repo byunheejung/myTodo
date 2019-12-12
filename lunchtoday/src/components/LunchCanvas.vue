@@ -12,10 +12,13 @@ export default {
   name: 'LunchCanvas',
   data() {
     return {
-      lunchMenu: this.$store.state.lunchMenu,
+      lunchMenu: this.$store.state.lunchMenu
     }
   },
   mounted() {
+    this.drawLunchCanvas();
+  },
+  updated() {
     this.drawLunchCanvas();
   },
   methods: {
@@ -67,6 +70,7 @@ export default {
         let deg = 0;
         let len = this.lunchMenu.length
         let sliceDeg = 360/len;
+        let currentArr = [];
         if (len == 0) {
             const canvas = document.getElementById('lunchMenuCircle');
             const ctx = canvas.getContext('2d');
@@ -83,9 +87,10 @@ export default {
             }
             this.drawCanvas(deg, this.getColor(i, len));  
             this.drawCanvasText(deg + sliceDeg/2 , this.lunchMenu[i]);
-            this.$store.commit('updateSaveWheel', currentWheel);
+            currentArr.push(currentWheel);
             deg += sliceDeg;
         }
+        this.$store.commit('updateSaveWheel', currentArr);
     }
   }
 }

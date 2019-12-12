@@ -15,13 +15,15 @@ export default {
   created() {
     
   },
+  props: {
+    
+  },
   data() {
     return {
       newMenu: null,
-      lunchMenu: this.$store.state.lunchMenu,
+      lunchMenu: this.$store.state.lunchMenu,  
       todayLunch: null,
       currentTxtColor: null,
-      saveWheel: this.$store.state.saveWheel,
     }
   },
   computed: {
@@ -36,6 +38,14 @@ export default {
       set: function(value) {
         this.$store.commit('updateCurrentSelect', value)
       }
+    },
+    setSaveWheel: {
+      get: function() {
+          return this.$store.state.saveWheel;
+      },
+      set: function(value) {
+        return value
+      }
     }
   },
   methods: {
@@ -46,7 +56,7 @@ export default {
         // vuex store addLunch 커밋하고
         this.$store.commit('addLunchList', this.newMenu);
         // 인풋 초기화
-        this.newMenu = '';
+        this.newMenu = null;
       }
     },
     spinlunch() {
@@ -68,10 +78,12 @@ export default {
         var randomDeg = 360 - (current % 360);
         var len = this.lunchMenu.length;
         var sliceDeg = 360/len;
+        var saveWheel = this.setSaveWheel;
+        
         for(var i = 0; i < len; i++) {
-            if(randomDeg > this.saveWheel[i].deg && this.saveWheel[i].deg + sliceDeg > randomDeg){
-                this.todayLunch = this.saveWheel[i].menu; // 얘는 컴포넌트 단에서만 알면 되
-                this.currentTxtColor = this.saveWheel[i].color;// 얘는 컴포넌트 단에서만 알면 되
+            if(randomDeg > saveWheel[i].deg && saveWheel[i].deg + sliceDeg > randomDeg){
+                this.todayLunch = saveWheel[i].menu; // 얘는 컴포넌트 단에서만 알면 되
+                this.currentTxtColor = saveWheel[i].color;// 얘는 컴포넌트 단에서만 알면 되
             }
         }
     },
