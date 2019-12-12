@@ -18,7 +18,10 @@ export default {
   data() {
     return {
       newMenu: null,
-      lunchMenu: this.$store.state.lunchMenu
+      lunchMenu: this.$store.state.lunchMenu,
+      todayLunch: null,
+      currentTxtColor: null,
+      saveWheel: this.$store.state.saveWheel,
     }
   },
   computed: {
@@ -59,7 +62,19 @@ export default {
       } else {
           alert('메뉴를 입력해 주세요.');
       }
-    }
+    },
+    saveCurrentWheel(current) {
+        this.todayLunch = '';
+        var randomDeg = 360 - (current % 360);
+        var len = this.lunchMenu.length;
+        var sliceDeg = 360/len;
+        for(var i = 0; i < len; i++) {
+            if(randomDeg > this.saveWheel[i].deg && this.saveWheel[i].deg + sliceDeg > randomDeg){
+                this.todayLunch = this.saveWheel[i].menu; // 얘는 컴포넌트 단에서만 알면 되
+                this.currentTxtColor = this.saveWheel[i].color;// 얘는 컴포넌트 단에서만 알면 되
+            }
+        }
+    },
   }
 }
 </script>

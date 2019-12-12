@@ -12,7 +12,7 @@ export default {
   name: 'LunchCanvas',
   data() {
     return {
-      lunchMenu: this.$store.state.lunchMenu
+      lunchMenu: this.$store.state.lunchMenu,
     }
   },
   mounted() {
@@ -27,14 +27,14 @@ export default {
         return '#' + this.byte2Hex(r) + this.byte2Hex(g) + this.byte2Hex(b);
     },
     getColor(item, maxitem) {
-        var phase = 0;
-        var center = 128;
-        var width = 127;
-        var frequency = Math.PI*2/maxitem;
+        let phase = 0;
+        let center = 128;
+        let width = 127;
+        let frequency = Math.PI*2/maxitem;
         
-        var red   = Math.sin(frequency*item+2+phase) * width + center;
-        var green = Math.sin(frequency*item+0+phase) * width + center;
-        var blue  = Math.sin(frequency*item+4+phase) * width + center;
+        let red   = Math.sin(frequency*item+2+phase) * width + center;
+        let green = Math.sin(frequency*item+0+phase) * width + center;
+        let blue  = Math.sin(frequency*item+4+phase) * width + center;
         
         return this.RGB2Color(red,green,blue);
     },
@@ -67,7 +67,6 @@ export default {
         let deg = 0;
         let len = this.lunchMenu.length
         let sliceDeg = 360/len;
-        this.saveWheel = [];
         if (len == 0) {
             const canvas = document.getElementById('lunchMenuCircle');
             const ctx = canvas.getContext('2d');
@@ -75,7 +74,6 @@ export default {
             ctx.beginPath();
             return;
         }
-        
         for(var i = 0; i < len; i++) {
             var menu = this.lunchMenu[i]
             var currentWheel = {
@@ -85,7 +83,7 @@ export default {
             }
             this.drawCanvas(deg, this.getColor(i, len));  
             this.drawCanvasText(deg + sliceDeg/2 , this.lunchMenu[i]);
-            this.saveWheel.push(currentWheel)
+            this.$store.commit('updateSaveWheel', currentWheel);
             deg += sliceDeg;
         }
     }

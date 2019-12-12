@@ -40,7 +40,8 @@ export default new Vuex.Store({
     // 전체 메뉴 초기 get
     lunchMenu: loadLunchMenu() || [],
     // options get
-    options: loadLunchGroup() || []
+    options: loadLunchGroup() || [],
+    saveWheel: [],
   },
   mutations: {
     // 이건 일단 예제로 만들기
@@ -54,6 +55,12 @@ export default new Vuex.Store({
         message
       ]
       saveLunch(state.lunchMenu);
+    },
+    updateSaveWheel(state, message) { // save 정보 state update
+      state.saveWheel = [
+        ...state.saveWheel,
+        message
+      ]
     }
   },
   actions: {
