@@ -10,16 +10,22 @@
 <script>
 export default {
   name: 'LunchCanvas',
-  data() {
-    return {
-      lunchMenu: this.$store.state.lunchMenu
-    }
-  },
   mounted() {
     this.drawLunchCanvas();
   },
   updated() {
     this.drawLunchCanvas();
+  },
+  computed: {
+    getLunchMenu() {
+      return this.$store.state.lunchMenu
+    }
+  },
+  watch: {
+    // WATCH는 이따구로 쓰는거구나
+    getLunchMenu(){
+      this.drawLunchCanvas();
+    }
   },
   methods: {
     byte2Hex(n) {
@@ -47,10 +53,11 @@ export default {
     drawCanvas(deg, color) {
         const canvas = document.getElementById('lunchMenuCircle');
         const ctx = canvas.getContext('2d');
+        let lunchMenu = this.getLunchMenu;
         ctx.beginPath();
         ctx.fillStyle = color;
         ctx.moveTo(250,250);
-        ctx.arc(250, 250, 250, this.getDeg(deg), this.getDeg(deg+(360/this.lunchMenu.length)));
+        ctx.arc(250, 250, 250, this.getDeg(deg), this.getDeg(deg+(360/lunchMenu.length)));
         ctx.lineTo(250,250);
         ctx.fill();
     },
@@ -68,7 +75,8 @@ export default {
     },
     drawLunchCanvas() {
         let deg = 0;
-        let len = this.lunchMenu.length
+        let lunchMenu = this.getLunchMenu;
+        let len = lunchMenu.length;
         let sliceDeg = 360/len;
         let currentArr = [];
         if (len == 0) {
@@ -79,14 +87,14 @@ export default {
             return;
         }
         for(var i = 0; i < len; i++) {
-            var menu = this.lunchMenu[i]
+            var menu = lunchMenu[i]
             var currentWheel = {
                 'deg' : deg,
                 'menu' : menu,
                 'color' : this.getColor(i, len)
             }
             this.drawCanvas(deg, this.getColor(i, len));  
-            this.drawCanvasText(deg + sliceDeg/2 , this.lunchMenu[i]);
+            this.drawCanvasText(deg + sliceDeg/2 , lunchMenu[i]);
             currentArr.push(currentWheel);
             deg += sliceDeg;
         }
