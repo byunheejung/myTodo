@@ -21,7 +21,6 @@ export default {
   data() {
     return {
       newMenu: null,
-      lunchMenu: this.$store.state.lunchMenu,
     }
   },
   computed: {
@@ -41,6 +40,14 @@ export default {
       get: function() {
           return this.$store.state.saveWheel;
       }
+    },
+    getLunchMenu() {
+      return this.$store.state.lunchMenu;
+    }
+  },
+  watch: {
+    getLunchMenu(){
+      this.updated();
     }
   },
   methods: {
@@ -55,8 +62,8 @@ export default {
       }
     },
     spinlunch() {
-      let rand2 = Math.floor(Math.abs(Math.random() * 10000)) + (360/this.lunchMenu.length) + 1;
-      if(this.lunchMenu.length > 0) {
+      let rand2 = Math.floor(Math.abs(Math.random() * 10000)) + (360/this.getLunchMenu.length) + 1;
+      if(this.getLunchMenu.length > 0) {
           const canvas = document.querySelector('.lunchCircle');
           canvas.style.transform = "rotate("  + rand2 + "deg)"
           // canvas의 트랜지션 이벤트가 끝나고 나서 saveCurrentWheel 메서드 실행
@@ -72,7 +79,7 @@ export default {
     saveCurrentWheel(current) {
         this.todayLunch = '';
         var randomDeg = 360 - (current % 360);
-        var len = this.lunchMenu.length;
+        var len = this.getLunchMenu.length;
         var sliceDeg = 360/len;
         var saveWheel = this.setSaveWheel;
         
