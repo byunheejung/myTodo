@@ -15,17 +15,17 @@ const loadLunchMenu = () => {
       return undefined;
   }
 }
-const loadLunchGroup = () => {
-  try {
-    const lunchGroup = JSON.parse(localStorage.getItem('lunchGroup'));
-    if(lunchGroup === null) {
-      return undefined;
-    }
-    return lunchGroup;
-  } catch(err) {
-      return undefined;
-  }
-}
+// const loadLunchGroup = () => {
+//   try {
+//     const lunchGroup = JSON.parse(localStorage.getItem('lunchGroup'));
+//     if(lunchGroup === null) {
+//       return undefined;
+//     }
+//     return lunchGroup;
+//   } catch(err) {
+//       return undefined;
+//   }
+// }
 
 const saveLunch = (state) => {
   try{
@@ -36,12 +36,22 @@ const saveLunch = (state) => {
   }
 }
 
+var testOption = [
+  {value: 'default', text: '버전을 골라주세요'},
+  {value: 'lunch', text: '점심메뉴 버전'},
+  {value: 'dinner', text: '석식메뉴 버전'},
+  {value: 'soju', text: '회식 버전'},
+  {value: 'new', text: '새롭게'}
+]
+
+
 export default new Vuex.Store({
   state: {
     // 전체 메뉴 초기 get
     lunchMenu: loadLunchMenu() || [],
     // options get
-    options: loadLunchGroup() || [],
+    // options: loadLunchGroup() || [],
+    options: testOption,
     saveWheel: [],
     todayLunch: null,
     currentTxtColor: null,
