@@ -4,6 +4,7 @@
       <ViewToday />
       <InputLunch />
       <LunchCanvas />
+      <LunchMap />
       <testCRUD />
     </section>
     <SideLunch />
@@ -16,6 +17,7 @@ import LunchCanvas from '@/components/LunchCanvas.vue'
 import InputLunch from '@/components/InputLunch.vue'
 import SideLunch from '@/components/SideLunch.vue'
 import ViewToday from '@/components/ViewToday.vue'
+import LunchMap from '@/components/LunchMap.vue'
 import testCRUD from '@/components/testCRUD.vue'
 
 export default {
@@ -25,6 +27,7 @@ export default {
     InputLunch,
     SideLunch,
     ViewToday,
+    LunchMap,
     testCRUD
   }
 }

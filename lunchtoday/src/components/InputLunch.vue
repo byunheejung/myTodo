@@ -46,8 +46,8 @@ export default {
     }
   },
   watch: {
-    getLunchMenu(){
-      this.updated();
+    getLunchMenu() {
+      
     }
   },
   methods: {

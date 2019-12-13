@@ -1,5 +1,5 @@
 <template>
-    <h2 class="today-lunch">
+    <h2 class="today-lunch" v-if="todayLunch">
         오늘의 메뉴는 <span v-bind:style="{color: todayColor}">{{todayLunch}}</span>입니다.
     </h2>
 </template>
@@ -16,6 +16,11 @@ export default {
     },
     todayColor() {
       return this.$store.state.currentTxtColor
+    }
+  },
+  watch: {
+    todayLunch() {
+      
     }
   }
 }
