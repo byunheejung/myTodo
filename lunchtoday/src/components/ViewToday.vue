@@ -1,6 +1,6 @@
 <template>
     <h2 class="today-lunch">
-        오늘의 메뉴는 {{todayLunch}}입니다.
+        오늘의 메뉴는 <span v-bind:style="{color: todayColor}">{{todayLunch}}</span>입니다.
     </h2>
 </template>
 
@@ -13,6 +13,9 @@ export default {
   computed: {
     todayLunch() {
       return this.$store.state.todayLunch;
+    },
+    todayColor() {
+      return this.$store.state.currentTxtColor
     }
   }
 }
