@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+// 후에 아래 내용은 action으로 넣으면 되는것인가?
 const loadLunchMenu = () => {
   try {
     const lunchState = JSON.parse(localStorage.getItem('lunch'));

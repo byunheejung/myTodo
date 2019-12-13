@@ -1,9 +1,9 @@
 <template>
     <aside class="sidebar">
         <div class="list-lunch">
-            <div class="current-lunch">
-                <strong class="name"></strong>
-                <button class="btn-delete">삭제</button>
+            <div class="current-lunch" v-for="(lunch, n) in getLunchMenu" v-bind:key="n">
+                <strong class="name">{{lunch}}</strong>
+                <button class="btn-delete" @click="removeLunch(n)">삭제</button>
             </div>
         </div>
     </aside>
@@ -12,7 +12,16 @@
 <script>
 export default {
   name: 'SideLunch',
-  props: {
+  computed: {
+    getLunchMenu() {
+      return this.$store.state.lunchMenu
+    }
+  },
+  methods: {
+      removeLunch(n) {
+          this.lunchMenu.splice(n, 1);
+          this.saveLunch();
+      }
   }
 }
 </script>
