@@ -67,7 +67,11 @@ export default new Vuex.Store({
     updateResult(state, message){
       state.todayLunch = message.menu;
       state.currentTxtColor = message.color;
-    }
+    },
+    deleteLunch(state, message) {
+      state.lunchMenu.splice(message,1);
+      saveLunch(state.lunchMenu);
+    },
   },
   actions: {
   },

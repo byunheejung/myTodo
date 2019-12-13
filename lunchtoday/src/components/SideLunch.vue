@@ -19,8 +19,7 @@ export default {
   },
   methods: {
       removeLunch(n) {
-          this.lunchMenu.splice(n, 1);
-          this.saveLunch();
+          this.$store.commit('deleteLunch', n);
       }
   }
 }
