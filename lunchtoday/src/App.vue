@@ -187,6 +187,7 @@ h1{
 }
 #lunchMenuCircle{
     transform: rotate(-90deg);
+    transform: scale(0.2)
 }
 .today-lunch{
     font-size: 30px;
