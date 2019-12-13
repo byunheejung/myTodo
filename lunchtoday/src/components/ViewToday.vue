@@ -17,6 +17,11 @@ export default {
     todayColor() {
       return this.$store.state.currentTxtColor
     }
+  },
+  watch: {
+    todayLunch() {
+      
+    }
   }
 }
 </script>
