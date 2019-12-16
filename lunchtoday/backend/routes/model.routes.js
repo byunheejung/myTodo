@@ -19,3 +19,4 @@ module.exports = app => {
     // delete all groups
     app.delete('/menuGroup', menuGroup.deleteAll);
 }
+

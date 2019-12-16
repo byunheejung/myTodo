@@ -13,9 +13,6 @@ exports.create = (req, res) => {
         group_name: req.body.group_name
     });
 
-    // eslint-disable-next-line no-console
-    console.log('menuGroup111111111', req.body);
-
     MenuGroup.create(menuGroup, (err, data) => {
         if (err) {
             res.status(500).send({

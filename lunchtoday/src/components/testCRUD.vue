@@ -4,34 +4,56 @@
         <button class="btn-test-delete">메뉴삭제</button>
         <button class="btn-test-modify">메뉴수정</button>
         <button class="btn-test-search">메뉴조회</button>
+        <div class="container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="group in groups" :key="group.group_id">
+                <td>{{ group.group_id }}</td>
+                <td>{{ group.group_name}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
     </section>    
 </template>
 
 <script>
-// import axios from 'axios';
+import { mapState } from 'vuex'
 
 export default {
   name: 'testCRUD',
-  props: {
-      
+  mounted () {
+    this.$store.dispatch('loadGroups')
   },
-  methods: {
-      addGroup: function() {
-        //   axios({
-        //       method: 'GET',
-        //       url: '/api/contacts',
-        //       params: {
-        //           page: 1,
-        //           pagesize: 5
-        //       }
-        //   }).then((respose) => {
-        //       console.log(response);
-        //       this.result = respose.dta;
-        //   }).catch((ex) => {
-        //       console.log('ERROR : ', ex);
-        //   })
-      }
-  }
+  computed: mapState([
+    'groups'
+  ])
+  // props: {
+      
+  // },
+  // methods: {
+  //     addGroup: function() {
+  //       //   axios({
+  //       //       method: 'GET',
+  //       //       url: '/api/contacts',
+  //       //       params: {
+  //       //           page: 1,
+  //       //           pagesize: 5
+  //       //       }
+  //       //   }).then((respose) => {
+  //       //       console.log(response);
+  //       //       this.result = respose.dta;
+  //       //   }).catch((ex) => {
+  //       //       console.log('ERROR : ', ex);
+  //       //   })
+  //     }
+  // }
 }
 </script>
 
