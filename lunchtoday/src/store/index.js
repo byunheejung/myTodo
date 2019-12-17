@@ -82,10 +82,12 @@ export default new Vuex.Store({
   },
   actions: {
     loadGroups ( {commit} ) {
+      // eslint-disable-next-line no-console
+      console.log('dddddddddddd');
       axios
         .get('http://42.243.134.40:3000/api/groups/menuGroup')
         .then(r => r.data)
-        .then(groups => {
+        .then(groups => { 
           // eslint-disable-next-line no-console
           console.log(groups)
           commit('SET_GROUPS', groups)

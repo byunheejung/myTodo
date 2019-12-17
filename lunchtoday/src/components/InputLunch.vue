@@ -1,8 +1,8 @@
 <template>
     <section class="wrap-ipt">
-        <select v-model="defaultLunchGroup">
+        <!-- <select v-model="defaultLunchGroup">
             <option v-for="option in setLunchGroup" v-bind:key="option.value">{{option.text}}</option>
-        </select>
+        </select> -->
         <input type="text" class="ipt-lunch" v-model="newMenu" v-on:keyup.13="addLunch">
         <button class="btn-add" @click="addLunch">메뉴추가</button>
         <button class="btn-spin" @click="spinlunch">오늘 뭐먹을지 돌려보자</button>
