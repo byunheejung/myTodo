@@ -15,7 +15,7 @@
             <tbody>
               <tr v-for="group in getGroup" :key="group.group_id">
                 <td>{{ group.group_id }}</td>
-                <td>{{ group.group_name}}</td>
+                <td>{{ group.group_name }}</td>
               </tr>
             </tbody>
           </table>
@@ -28,9 +28,9 @@
 
 export default {
   name: 'testCRUD',
-  mounted () {
-    this.$store.dispatch('loadGroups')
-  },
+  // mounted () {
+  //   this.$store.dispatch('loadGroups')
+  // },
   data() {
     return {
       getGroup: this.$store.state.groups

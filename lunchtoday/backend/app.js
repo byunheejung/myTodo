@@ -36,3 +36,6 @@ app.use('/api/groups', groupsRouter); //database
 
 const history = require('connect-history-api-fallback');
 app.use(history());
+
+const cors = require('cors');
+app.use(cors());
