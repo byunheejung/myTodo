@@ -8,6 +8,14 @@ const connection = mysql.createConnection({
     database: dbConfig.db
 });
 
+// eslint-disable-next-line no-console
+console.log({
+    host: dbConfig.host,
+    user: dbConfig.user,
+    password: dbConfig.password,
+    database: dbConfig.db
+});
+
 connection.connect(error => {
     if (error) {
         throw error;

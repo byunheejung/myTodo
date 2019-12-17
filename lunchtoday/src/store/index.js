@@ -91,7 +91,7 @@ export default new Vuex.Store({
   actions: {
     loadGroups ( {commit} ) {
       axios
-        .get('http://42.243.134.40:3000/')
+        .get('http://42.243.134.40:3000/loadGroup')
         .then(r => r.data)
         .then(groups => {
           // eslint-disable-next-line no-console
