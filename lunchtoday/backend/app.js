@@ -31,8 +31,8 @@
 });
 
 app.use(express.static('public'));
-app.use('/', indexRouter);
-app.use('/api/groups', groupsRouter);
+app.use('/', indexRouter); // 
+app.use('/api/groups', groupsRouter); //database
 
 const history = require('connect-history-api-fallback');
 app.use(history());

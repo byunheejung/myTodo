@@ -28,14 +28,6 @@ export default {
       // 바로 created 에서 props에 복사 하면 안되고 computed 를 이용해서 받아와서 조작해야함
       return this.$store.state.options;
     },
-    defaultLunchGroup: {      
-      get: function() {
-          return this.$store.state.options[0].text;
-      },
-      set: function(value) {
-        this.$store.commit('updateCurrentSelect', value)
-      }
-    },
     setSaveWheel: {
       get: function() {
           return this.$store.state.saveWheel;

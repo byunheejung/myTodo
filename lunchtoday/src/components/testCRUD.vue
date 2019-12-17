@@ -13,7 +13,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="group in groups" :key="group.group_id">
+              <tr v-for="group in getGroup" :key="group.group_id">
                 <td>{{ group.group_id }}</td>
                 <td>{{ group.group_name}}</td>
               </tr>
@@ -24,16 +24,21 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+// import { mapState } from 'vuex'
 
 export default {
   name: 'testCRUD',
   mounted () {
     this.$store.dispatch('loadGroups')
   },
-  computed: mapState([
-    'groups'
-  ])
+  data() {
+    return {
+      getGroup: this.$store.state.groups
+    }
+  },
+  computed: {
+  
+  }
   // props: {
       
   // },
