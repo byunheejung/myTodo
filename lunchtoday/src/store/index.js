@@ -6,7 +6,6 @@ import VueAxios from 'vue-axios'
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
 
-/** 일단 주석 처리 해놓음 시작 */
 // 후에 아래 내용은 action으로 넣으면 되는것인가?
 const loadLunchMenu = () => {
   try {
@@ -51,6 +50,9 @@ export default new Vuex.Store({
     groups: []
   },
   getters: {
+    groups(state) {
+      return state.groups;
+    }
   },
   mutations: {
     // 이건 일단 예제로 만들기
@@ -76,28 +78,36 @@ export default new Vuex.Store({
       state.lunchMenu.splice(message,1);
       saveLunch(state.lunchMenu);
     },
-    SET_GROUPS (state, groups) {
-      state.groups = groups
+    SUCCESS_GET_GROUPS (state, data) {
+      state.groups = data;
+      // eslint-disable-next-line no-console
+      console.log('SUCCESS_GET_GROUPS', data);
+      // eslint-disable-next-line no-console
+      console.log('sate.groups', state.groups);
+    },
+    FAIL_GET_GROUPS () {
+      // eslint-disable-next-line no-console
+      console.log('ERROR');
     }
   },
   actions: {
-    loadGroups ( {commit} ) {
-      // eslint-disable-next-line no-console
-      console.log('dddddddddddd');
+    // get all menuGroup
+    selectAllGroups ( {commit} ) {
       axios
         .get('http://42.243.134.40:3000/api/groups/menuGroup')
-        .then(r => r.data)
-        .then(groups => { 
+        .then((res) => {
           // eslint-disable-next-line no-console
-          console.log(groups)
-          commit('SET_GROUPS', groups)
+          console.log('SUCCESS_GET_GROUPS_BEFORE', res.data);
+          commit('SUCCESS_GET_GROUPS', res.data);
+        })
+        .catch((res) => {
+          // eslint-disable-next-line no-console
+          console.log('FAIL_GET_GROUPS', res);
+          commit('FAIL_GET_GROUPS', res);
         })
     }
   },
   modules: {
   }
 })
-
-/** 일단 주석 처리 해놓음 끝 */
-
 
