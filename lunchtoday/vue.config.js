@@ -6,7 +6,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/api': {
-                target: 'http://localhost:3000/api',
+                target: 'http://42.243.134.40:3000/api',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': ''
@@ -15,11 +15,6 @@ module.exports = {
         },
         host: ip.address(),
         hot: true,
-        disableHostCheck: true,
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-        }
+        disableHostCheck: true
     }
 }
