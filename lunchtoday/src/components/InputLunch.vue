@@ -1,7 +1,7 @@
 <template>
     <section class="wrap-ipt">
-        <!-- <select v-model="defaultLunchGroup">
-            <option v-for="option in setLunchGroup" v-bind:key="option.value">{{option.text}}</option>
+        <!-- <select v-model="grouplist">
+            <option v-for="option in grouplist" v-bind:key="option.group_id">{{option.group_name}}</option>
         </select> -->
         <input type="text" class="ipt-lunch" v-model="newMenu" v-on:keyup.13="addLunch">
         <button class="btn-add" @click="addLunch">메뉴추가</button>
@@ -35,7 +35,16 @@ export default {
     },
     getLunchMenu() {
       return this.$store.state.lunchMenu;
-    }
+    },
+    grouplist: {
+      // get: function() {
+      //   this.$store.dispatch('selectAllGroups');
+      //   return this.$store.state.groups;
+      // },
+      // set: function() {
+        
+      // }
+    },
   },
   watch: {
     getLunchMenu() {
