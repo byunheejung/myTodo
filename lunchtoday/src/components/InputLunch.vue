@@ -1,8 +1,8 @@
 <template>
     <section class="wrap-ipt">
-        <!-- <select v-model="grouplist">
+        <select v-model="grouplist">
             <option v-for="option in grouplist" v-bind:key="option.group_id">{{option.group_name}}</option>
-        </select> -->
+        </select>
         <input type="text" class="ipt-lunch" v-model="newMenu" v-on:keyup.13="addLunch">
         <button class="btn-add" @click="addLunch">메뉴추가</button>
         <button class="btn-spin" @click="spinlunch">오늘 뭐먹을지 돌려보자</button>
@@ -13,7 +13,7 @@
 export default {
   name: 'InputLunch',
   created() {
-    
+    this.$store.dispatch('selectAllGroups');
   },
   props: {
     
@@ -37,13 +37,12 @@ export default {
       return this.$store.state.lunchMenu;
     },
     grouplist: {
-      // get: function() {
-      //   this.$store.dispatch('selectAllGroups');
-      //   return this.$store.state.groups;
-      // },
-      // set: function() {
+      get: function() {
+        return this.$store.state.groups;
+      },
+      set: function() {
         
-      // }
+      }
     },
   },
   watch: {
