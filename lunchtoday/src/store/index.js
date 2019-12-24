@@ -47,7 +47,8 @@ export default new Vuex.Store({
     saveWheel: [],
     todayLunch: null,
     currentTxtColor: null,
-    groups: []
+    groups: [],
+    newGroup: []
   },
   getters: {
     groups(state) {
@@ -105,6 +106,26 @@ export default new Vuex.Store({
           console.log('FAIL_GET_GROUPS', res);
           commit('FAIL_GET_GROUPS', res);
         })
+    },
+    // insert menuGroup
+    insertGroups ( {/*commit,*/ state} ) {
+      if (!state.newGroup) {
+        return;
+      }
+
+      axios
+      .post('http://42.243.134.40:3000/api/groups/menuGroup', {
+        group_id: state.newGroup,
+        group_name: state.newGroup
+      })
+      .then((res) => {
+        // eslint-disable-next-line no-console
+        console.log(res.data);
+      })
+      .catch((e) => {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      })
     }
   },
   modules: {

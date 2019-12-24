@@ -1,6 +1,7 @@
 <template>
     <section>
-        <!-- <button class="btn-test-add" @click="addGroup">메뉴추가</button> -->
+        <input type="text" class="ipt-group" v-model="newGroupName">
+        <button class="btn-test-add" @click="addGroup" value="submit">메뉴추가</button>
         <button class="btn-test-delete">메뉴삭제</button>
         <button class="btn-test-modify">메뉴수정</button>
         <button class="btn-test-search" @click="searchGroup">메뉴조회</button>
@@ -26,6 +27,11 @@
 <script>
 export default {
   name: 'testCRUD',
+  data() {
+    return {
+      newGroupName: null
+    }
+  },
   computed: {
     groupList() {
       return this.$store.state.groups;
@@ -34,6 +40,14 @@ export default {
   methods: {
     searchGroup() {
       this.$store.dispatch('selectAllGroups');
+    },
+    addGroup() {
+      if (this.newGroupName == null) {
+        return;
+      }
+
+      this.$store.state.newGroup = this.newGroupName;
+      this.$store.dispatch('insertGroups');
     }
   }
 }
@@ -41,4 +55,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .ipt-group {
+    border: 1px solid #444;
+    margin-left: 10px;
+  }
 </style>
