@@ -50,11 +50,11 @@ export default new Vuex.Store({
     groups: [],
     newGroup: []
   },
-  getters: {
-    groups(state) {
-      return state.groups;
-    }
-  },
+  // getters: {
+  //   groups(state) {
+  //     return state.groups;
+  //   }
+  // },
   mutations: {
     // 이건 일단 예제로 만들기
     updateCurrentSelect (state, message) {
@@ -89,38 +89,46 @@ export default new Vuex.Store({
     FAIL_GET_GROUPS () {
       // eslint-disable-next-line no-console
       console.log('ERROR');
+    },
+    ADD_GROUP (state, data) {
+        state.newGroup = data;
+        // eslint-disable-next-line no-console
+      console.log('ADD_GROUP', data);
+      // eslint-disable-next-line no-console
+      console.log('sate.newGroup', state.newGroup);
     }
   },
   actions: {
     // get all menuGroup
     selectAllGroups ( {commit} ) {
       axios
-        .get('http://42.243.134.40:3000/api/groups/menuGroup')
-        .then((res) => {
-          // eslint-disable-next-line no-console
-          console.log('SUCCESS_GET_GROUPS_BEFORE', res.data);
-          commit('SUCCESS_GET_GROUPS', res.data);
-        })
-        .catch((res) => {
-          // eslint-disable-next-line no-console
-          console.log('FAIL_GET_GROUPS', res);
-          commit('FAIL_GET_GROUPS', res);
-        })
+      .get('http://42.243.134.40:3000/api/groups/menuGroup')
+      .then((res) => {
+        // eslint-disable-next-line no-console
+        console.log('SUCCESS_GET_GROUPS_BEFORE', res.data);
+        commit('SUCCESS_GET_GROUPS', res.data);
+      })
+      .catch((res) => {
+        // eslint-disable-next-line no-console
+        console.log('FAIL_GET_GROUPS', res);
+        commit('FAIL_GET_GROUPS', res);
+      })
     },
     // insert menuGroup
-    insertGroups ( {/*commit,*/ state} ) {
-      if (!state.newGroup) {
+    insertGroups ( {commit}, context ) {
+      if (!context) {
         return;
       }
 
       axios
       .post('http://42.243.134.40:3000/api/groups/menuGroup', {
-        group_id: state.newGroup,
-        group_name: state.newGroup
+        group_id: context,
+        group_name: context
       })
       .then((res) => {
         // eslint-disable-next-line no-console
-        console.log(res.data);
+        console.log('ADD_GROUP_BEFORE', res.data);
+        commit('ADD_GROUP', res.data);
       })
       .catch((e) => {
         // eslint-disable-next-line no-console

@@ -46,8 +46,7 @@ export default {
         return;
       }
 
-      this.$store.state.newGroup = this.newGroupName;
-      this.$store.dispatch('insertGroups');
+      this.$store.dispatch('insertGroups', this.newGroupName);
     }
   }
 }

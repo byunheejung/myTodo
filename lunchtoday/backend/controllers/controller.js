@@ -14,6 +14,10 @@ exports.create = (req, res) => {
     });
 
     MenuGroup.create(menuGroup, (err, data) => {
+        // eslint-disable-next-line no-console
+        console.log('err', err);
+        // eslint-disable-next-line no-console
+        console.log('data', data);
         if (err) {
             res.status(500).send({
                 message: err.message
