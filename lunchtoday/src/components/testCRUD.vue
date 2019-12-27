@@ -2,9 +2,14 @@
     <section>
         <input type="text" class="ipt-group" v-model="newGroupName">
         <button class="btn-test-add" @click="addGroup" value="submit">메뉴추가</button>
+
         <input type="text" class="ipt-group" v-model="delGroupName">
         <button class="btn-test-delete" @click="delGroup" value="submit">메뉴삭제</button>
-        <button class="btn-test-modify">메뉴수정</button>
+        
+        <input type="text" class="ipt-group" v-model="modiGroupId">
+        <input type="text" class="ipt-group" v-model="modiGroupName">
+        <button class="btn-test-modify" @click="modiGroup" value="submit">메뉴수정</button>
+
         <button class="btn-test-search" @click="searchGroup">메뉴조회</button>
         <div class="container">
           <table class="table">
@@ -55,6 +60,21 @@ export default {
       }
 
       this.$store.dispatch('deleteGroup', this.delGroupName);
+    },
+    modiGroup() {
+      const arr = {
+        group_id: '',
+        gorup_name: ''
+      };
+
+      if (this.modiGroupName == null || this.modiGroupId == null) {
+        return;
+      }
+
+      arr.group_id = this.modiGroupId;
+      arr.group_name = this.modiGroupName;
+
+      this.$store.dispatch('updateGroup', arr);
     }
   }
 }

@@ -68,9 +68,17 @@ exports.update = (req, res) => {
         });
     }
 
+    const menuGroup = new MenuGroup({
+        group_id: req.body.group_id,
+        group_name: req.body.group_name
+    });
+
+    // eslint-disable-next-line no-console
+    console.log('menuGroup', menuGroup);
+
     MenuGroup.updateById(
         req.params.groupId,
-        new MenuGroup(req.body),
+        menuGroup,
         (err, data) => {
             if (err) {
                 if (err.kind === 'not_found') {

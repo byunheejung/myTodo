@@ -73,6 +73,8 @@ MenuGroup.updateById = (groupId, newMenuGroup, result) => {
 
             // eslint-disable-next-line no-console
             console.log('update MENU_GROUP SUCCESS');
+            // eslint-disable-next-line no-console
+            console.log('updateById', newMenuGroup);
             result(null, { group_id: res.insertGroup_id, group_name: res.insertGroup_name });
         }
     );

@@ -48,14 +48,9 @@ export default new Vuex.Store({
     todayLunch: null,
     currentTxtColor: null,
     groups: [],
-    newGroup: []
-    // delGroup: []
+    newGroup: [],
+    updateGoup: []
   },
-  // getters: {
-  //   groups(state) {
-  //     return state.groups;
-  //   }
-  // },
   mutations: {
     // 이건 일단 예제로 만들기
     updateCurrentSelect (state, message) {
@@ -84,8 +79,6 @@ export default new Vuex.Store({
       state.groups = data;
       // eslint-disable-next-line no-console
       console.log('SUCCESS_GET_GROUPS', data);
-      // eslint-disable-next-line no-console
-      console.log('sate.groups', state.groups);
     },
     FAIL_GET_GROUPS () {
       // eslint-disable-next-line no-console
@@ -94,20 +87,14 @@ export default new Vuex.Store({
     ADD_GROUP (state, data) {
         state.newGroup = data;
         // eslint-disable-next-line no-console
-      console.log('ADD_GROUP', data);
-      // eslint-disable-next-line no-console
-      console.log('sate.newGroup', state.newGroup);
+        console.log('ADD_GROUP', data);
     },
     DELETE_GROUP (state, group_id) {
       let index = state.groups.findIndex(group => group.group_id == group_id);
-       // eslint-disable-next-line no-console
-       console.log('index', index);
       state.groups.splice(index, 1);
-
-     
-      // state.delGroup = group_id;
-      // eslint-disable-next-line no-console
-      // console.log('state.delGroup', state.delGroup);
+    },
+    UPDATE_GROUP (state, group_name) {
+        state.updateGoup = group_name;
     }
   },
   actions: {
@@ -116,13 +103,9 @@ export default new Vuex.Store({
       axios
       .get('http://42.243.134.40:3000/api/groups/menuGroup')
       .then((res) => {
-        // eslint-disable-next-line no-console
-        console.log('SUCCESS_GET_GROUPS_BEFORE', res.data);
         commit('SUCCESS_GET_GROUPS', res.data);
       })
       .catch((res) => {
-        // eslint-disable-next-line no-console
-        console.log('FAIL_GET_GROUPS', res);
         commit('FAIL_GET_GROUPS', res);
       })
     },
@@ -138,8 +121,6 @@ export default new Vuex.Store({
         group_name: context
       })
       .then((res) => {
-        // eslint-disable-next-line no-console
-        console.log('ADD_GROUP_BEFORE', res.data);
         commit('ADD_GROUP', res.data);
       })
       .catch((e) => {
@@ -147,7 +128,7 @@ export default new Vuex.Store({
         console.error(e);
       })
     },
-    // del menuGorup
+    // delete menuGorup
     deleteGroup ( {commit}, group_id ) {
       if (!group_id) {
         return;
@@ -159,6 +140,23 @@ export default new Vuex.Store({
         // eslint-disable-next-line no-console
         console.log('DELETE_GROUP_BEFORE', res);
         commit('DELETE_GROUP', group_id);
+      })
+    },
+    // update menuGorup
+    updateGroup ( {commit}, context ) {
+      if (!context) {
+        return;
+      }
+
+      axios
+      .put('http://42.243.134.40:3000/api/groups/menuGroup/' + context.group_id, {
+        group_id: context.group_id,
+        group_name: context.group_name
+      })
+      .then((res) => {
+        // eslint-disable-next-line no-console
+        console.log('UPDATE_GROUP_BEFORE', res);
+        commit('UPDATE_GROUP', context.group_name);
       })
     }
   },
