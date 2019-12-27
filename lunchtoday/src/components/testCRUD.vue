@@ -1,16 +1,29 @@
 <template>
     <section>
+      <div>
+        <label>그룹명</label>
         <input type="text" class="ipt-group" v-model="newGroupName">
         <button class="btn-test-add" @click="addGroup" value="submit">메뉴추가</button>
+      </div> 
 
-        <input type="text" class="ipt-group" v-model="delGroupName">
+      <div>
+        <label>그룹ID</label>
+        <input type="text" class="ipt-group" v-model="delGroupId">
+        <!-- <input type="text" class="ipt-group" v-model="delGroupName"> -->
         <button class="btn-test-delete" @click="delGroup" value="submit">메뉴삭제</button>
-        
+      </div>
+
+      <div>  
+        <label>그룹ID</label>
         <input type="text" class="ipt-group" v-model="modiGroupId">
+        <label>그룹명</label>
         <input type="text" class="ipt-group" v-model="modiGroupName">
         <button class="btn-test-modify" @click="modiGroup" value="submit">메뉴수정</button>
+      </div>
 
+      <div>
         <button class="btn-test-search" @click="searchGroup">메뉴조회</button>
+      </div>  
         <div class="container">
           <table class="table">
             <thead>
@@ -35,7 +48,10 @@ export default {
   name: 'testCRUD',
   data() {
     return {
-      newGroupName: null
+      newGroupName: null,
+      delGroupId: null,
+      modiGroupId: null,
+      modiGroupName: null
     }
   },
   computed: {
@@ -55,11 +71,11 @@ export default {
       this.$store.dispatch('insertGroup', this.newGroupName);
     },
     delGroup() {
-      if (this.delGroupName == null) {
+      if (this.delGroupId == null) {
         return;
       }
 
-      this.$store.dispatch('deleteGroup', this.delGroupName);
+      this.$store.dispatch('deleteGroup', this.delGroupId);
     },
     modiGroup() {
       const arr = {

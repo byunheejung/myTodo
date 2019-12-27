@@ -117,7 +117,6 @@ export default new Vuex.Store({
 
       axios
       .post('http://42.243.134.40:3000/api/groups/menuGroup', {
-        group_id: context,
         group_name: context
       })
       .then((res) => {

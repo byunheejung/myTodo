@@ -2,7 +2,6 @@ const sql = require('./db.js');
 
 // constructor
 const MenuGroup = function(menuGroup) {
-    this.group_id = menuGroup.group_id;
     this.group_name = menuGroup.group_name;
 };
 
