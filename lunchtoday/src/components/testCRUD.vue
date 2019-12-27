@@ -2,7 +2,8 @@
     <section>
         <input type="text" class="ipt-group" v-model="newGroupName">
         <button class="btn-test-add" @click="addGroup" value="submit">메뉴추가</button>
-        <button class="btn-test-delete">메뉴삭제</button>
+        <input type="text" class="ipt-group" v-model="delGroupName">
+        <button class="btn-test-delete" @click="delGroup" value="submit">메뉴삭제</button>
         <button class="btn-test-modify">메뉴수정</button>
         <button class="btn-test-search" @click="searchGroup">메뉴조회</button>
         <div class="container">
@@ -46,7 +47,14 @@ export default {
         return;
       }
 
-      this.$store.dispatch('insertGroups', this.newGroupName);
+      this.$store.dispatch('insertGroup', this.newGroupName);
+    },
+    delGroup() {
+      if (this.delGroupName == null) {
+        return;
+      }
+
+      this.$store.dispatch('deleteGroup', this.delGroupName);
     }
   }
 }

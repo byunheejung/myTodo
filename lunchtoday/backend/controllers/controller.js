@@ -92,6 +92,8 @@ exports.update = (req, res) => {
 // delete a group with the specified groupid in the request
 exports.delete = (req, res) => {
     MenuGroup.remove(req.params.groupId, (err, data) => {
+        // eslint-disable-next-line no-console
+        console.log('req.params.groupId', req.params.groupId);
         if (err) {
             if (err.kind === 'not_found') {
                 res.status(404).send({

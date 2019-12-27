@@ -14,6 +14,9 @@ MenuGroup.create = (newMenuGroup, result) => {
             result(err, null);
             return;
         }
+
+        // eslint-disable-next-line no-console
+        console.log('res', res);
     });
 };
 

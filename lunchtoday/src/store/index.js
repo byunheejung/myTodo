@@ -49,6 +49,7 @@ export default new Vuex.Store({
     currentTxtColor: null,
     groups: [],
     newGroup: []
+    // delGroup: []
   },
   // getters: {
   //   groups(state) {
@@ -96,6 +97,17 @@ export default new Vuex.Store({
       console.log('ADD_GROUP', data);
       // eslint-disable-next-line no-console
       console.log('sate.newGroup', state.newGroup);
+    },
+    DELETE_GROUP (state, group_id) {
+      let index = state.groups.findIndex(group => group.group_id == group_id);
+       // eslint-disable-next-line no-console
+       console.log('index', index);
+      state.groups.splice(index, 1);
+
+     
+      // state.delGroup = group_id;
+      // eslint-disable-next-line no-console
+      // console.log('state.delGroup', state.delGroup);
     }
   },
   actions: {
@@ -115,7 +127,7 @@ export default new Vuex.Store({
       })
     },
     // insert menuGroup
-    insertGroups ( {commit}, context ) {
+    insertGroup ( {commit}, context ) {
       if (!context) {
         return;
       }
@@ -133,6 +145,20 @@ export default new Vuex.Store({
       .catch((e) => {
         // eslint-disable-next-line no-console
         console.error(e);
+      })
+    },
+    // del menuGorup
+    deleteGroup ( {commit}, group_id ) {
+      if (!group_id) {
+        return;
+      }
+
+      axios
+      .delete('http://42.243.134.40:3000/api/groups/menuGroup/' + group_id)
+      .then((res) => {
+        // eslint-disable-next-line no-console
+        console.log('DELETE_GROUP_BEFORE', res);
+        commit('DELETE_GROUP', group_id);
       })
     }
   },
