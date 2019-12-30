@@ -1,4 +1,4 @@
-const MenuGroup = require('../models/model.js');
+const MenuGroup = require('../models/menuGroupModel.js');
 
 // create and save a new group
 exports.create = (req, res) => {

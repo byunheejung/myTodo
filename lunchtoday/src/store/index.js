@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+// import { resolve } from 'path'
+// import { reject } from 'q'
 
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)

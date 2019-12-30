@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const menuGroup = require('../controllers/controller.js');
+const menuGroup = require('../controllers/menuGroupController.js');
 
 // create a new group
 router.post('/menuGroup', menuGroup.create);
