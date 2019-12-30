@@ -38,7 +38,7 @@ export default {
     },
     grouplist: {
       get: function() {
-        return this.$store.state.groups;
+        return this.$store.state.menuGroup.groups;
       },
       set: function() {
         

@@ -16,11 +16,13 @@ app.listen(port, () => {
 });
 
 const indexRouter = require('./routes/index');
-const groupsRouter = require('./routes/model.routes');
+const menuGroupRouter = require('./routes/groups.routes');
+const menuRouter = require('./routes/menu.routes');
 
 app.use(express.static('public'));
 app.use('/', indexRouter); // 
-app.use('/api/groups', groupsRouter); //database
+app.use('/api/group', menuGroupRouter);     // group
+app.use('/api/menu', menuRouter);           // menu  
 
 const history = require('connect-history-api-fallback');
 app.use(history());
