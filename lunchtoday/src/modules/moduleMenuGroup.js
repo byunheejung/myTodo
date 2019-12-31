@@ -76,7 +76,7 @@ export const moduleMenuGroup = {
         // update menuGorup
         updateGroup ( {commit}, context ) {
             if (!context) {
-            return;
+                return;
             }
     
             axios

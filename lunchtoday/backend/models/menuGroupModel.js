@@ -6,7 +6,7 @@ const MenuGroup = function(menuGroup) {
 };
 
 MenuGroup.create = (newMenuGroup, result) => {
-    sql.query('INSERT INTO MENU_GROUP SET ?', newMenuGroup, (err, res) => {
+    sql.query('INSERT INTO MENU_GROUP (GROUP_NAME) VALUES (?)', newMenuGroup.group_name, (err, res) => {
         if (err) {
             // eslint-disable-next-line no-console
             console.log('error : ', err);

@@ -7,7 +7,9 @@ const Menu = function(menu) {
 };
 
 Menu.create = (newMenu, result) => {
-    sql.query('INSERT INTO MENU_LIST SET ?', newMenu, (err, res) => {
+    sql.query('INSERT INTO MENU_LIST (GROUP_ID, MENU_NAME) VALUES (?, ?)', 
+    [newMenu.group_id, newMenu.menu_name], 
+    (err, res) => {
         if (err) {
             // eslint-disable-next-line no-console
             console.log('error : ', err);
@@ -33,7 +35,8 @@ Menu.findById = (groupId, result) => {
         if (res.length) {
             // eslint-disable-next-line no-console
             console.log('found menu: ', res[0]);
-            result(null, res[0]);
+            // result(null, res[0]);
+            result(null, res);
             return;
         }
 
@@ -56,33 +59,34 @@ Menu.findById = (groupId, result) => {
 //     });
 // }
 
-Menu.updateById = (groupId, newMenu, result) => {
-    sql.query('UPDATE MENU_LIST SET MENU_NAME = ? WHERE MENU_ID = ? AND GROUP_ID = ?'),
-    [newMenu.menu_name, newMenu.menu_id, groupId],
-    (err, res) => {
-        if (err) {
+Menu.updateById = (menuId, newMenu, result) => {
+    sql.query('UPDATE MENU_LIST SET MENU_NAME = ? WHERE MENU_ID = ? AND GROUP_ID = ?',
+        [newMenu.menu_name, menuId, newMenu.group_id],
+        (err, res) => {
+            if (err) {
+                // eslint-disable-next-line no-console
+                console.log('error: ', err);
+                result(null, err);
+                return;
+            }
+
+            if (res.affectdRows == 0) {
+                result({knd: 'not_found'}, null);
+                return;
+            }
+
             // eslint-disable-next-line no-console
-            console.log('error: ', err);
-            result(null, err);
-            return;
+            console.log('update MENU_LIST SUCCESS');
+            // eslint-disable-next-line no-console
+            console.log('updateById', newMenu);
+            result(null, { menu_id: res.insertMenu_id, menu_name: res.insertMenu_name });
         }
-
-        if (res.affectdRows == 0) {
-            result({knd: 'not_found'}, null);
-            return;
-        }
-
-        // eslint-disable-next-line no-console
-        console.log('update MENU_LIST SUCCESS');
-        // eslint-disable-next-line no-console
-        console.log('updateById', newMenu);
-        result(null, { menu_id: res.insertMenu_id, menu_name: res.insertMenu_name });
-    };
+    );
 };
 
-Menu.remove = (newMenu, result) => {
+Menu.remove = (menuId, newMenu, result) => {
     sql.query('DELETE FROM MENU_LIST WHERE MENU_ID = ? AND GROUP_ID = ?', 
-    [newMenu.menu_id, newMenu.group_id],
+    [menuId, newMenu.group_id],
     (err, res) => {
         if (err) {
             // eslint-disable-next-line no-console

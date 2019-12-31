@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     }
 
     const menu = new Menu({
-        menu_id: req.body.menu_id,
+        group_id: req.body.group_id,
         menu_name: req.body.menu_name 
     });
 
@@ -70,7 +70,8 @@ exports.update = (req, res) => {
 
     const menu = new Menu({
         menu_id: req.body.menu_id,
-        menu_name: req.body.menu_name
+        menu_name: req.body.menu_name,
+        group_id: req.body.group_id
     });
 
     // eslint-disable-next-line no-console
@@ -99,17 +100,31 @@ exports.update = (req, res) => {
 
 // delete a group with the specified groupid in the request
 exports.delete = (req, res) => {
-    Menu.remove(req.params.menuId, (err, data) => {
+    if (!req.body) {
+        res.status(400).send({
+            message: 'Content can not be empty!'
+        });
+    }
+
+    const menu = new Menu({
+        menu_id: req.body.menu_id,
+        group_id: req.body.group_id
+    });
+
+    Menu.remove(
+        req.params.menuId, 
+        menu, 
+        (err, data) => {
         // eslint-disable-next-line no-console
-        console.log('req.params.menuId', req.params.menuId);
+        console.log('req.params', menu);
         if (err) {
             if (err.kind === 'not_found') {
                 res.status(404).send({
-                    message: 'Not found Menu with menuId ${req.params.menuId}'
+                    message: 'Not found Menu with menuId ${menu.menu_id}'
                 });
             } else {
                 res.status(500).send({
-                    message: 'Could not delete Menu with id ' + req.params.menuId
+                    message: 'Could not delete Menu with id ' + menu.menu_id
                 })
             }
         } else {
