@@ -5,10 +5,12 @@ export const moduleMenu = {
         menus: []
     },
     mutations: {
-        SUCCES_GET_MENUS (state, data) {
+        SUCCESS_GET_MENUS (state, data) {
             state.menus = data;
             // eslint-disable-next-line no-console
-            console.log('SUCCES_GET_MENUS', data);
+            console.log('SUCCESS_GET_MENUS', data);
+            // eslint-disable-next-line no-console
+            console.log('state.menus', state.menus);
         },
         FAIL_GET_MENUS () {
             // eslint-disable-next-line no-console
@@ -20,7 +22,9 @@ export const moduleMenu = {
             axios
             .get('http://42.243.134.40:3000/api/menu/menu/' + group_id)
             .then((res) => {
-                commit('SUCCES_GET_MENUS', res.data);
+                // eslint-disable-next-line no-console
+                console.log('selectMenusOneGroup.res', res);
+                commit('SUCCESS_GET_MENUS', res.data);
             })
             .catch((res) => {
                 commit('FAIL_GET_MENUS', res);

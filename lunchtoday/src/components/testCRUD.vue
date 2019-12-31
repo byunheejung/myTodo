@@ -57,13 +57,13 @@
               <th>hide_yn</th>
             </tr>
           </thead>
-          <tbody>
+           <tbody>
             <tr v-for="menu in menuList" :key="menu.group_id">
               <td>{{ menu.group_id }}</td>
               <td>{{ menu.menu_id }}</td>
               <td>{{ menu.menu_name }}</td>
               <td>{{ menu.hide_yn }}</td>
-            </tr>  
+            </tr>
           </tbody>
         </table>
       </div>
@@ -92,7 +92,9 @@ export default {
       return this.$store.state.menuGroup.groups;
     },
     menuList() {
-      return this.$store.state.menu.menus;
+      // return this.$store.state.menuGroup.groups;
+      // return this.$store.state.menus;
+      return this.$store.state.moduleMenu.menus;
     }
   },
   methods: {

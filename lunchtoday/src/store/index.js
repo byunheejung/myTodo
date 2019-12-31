@@ -42,7 +42,7 @@ var testOption = [
 export default new Vuex.Store({
   modules: {
     menuGroup: moduleMenuGroup,
-    menu: moduleMenu
+    moduleMenu: moduleMenu
   },
   state: {
     // 전체 메뉴 초기 get
