@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import {moduleMenuGroup} from '../modules/moduleMenuGroup'
-import {moduleMenu} from '../modules/moduleMenu'
+import {storeMenuGroup} from '../modules/storeMenuGroup'
+import {storeMenu} from '../modules/storeMenu'
 
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
@@ -41,8 +41,8 @@ var testOption = [
 
 export default new Vuex.Store({
   modules: {
-    menuGroup: moduleMenuGroup,
-    moduleMenu: moduleMenu
+    menuGroup: storeMenuGroup,
+    moduleMenu: storeMenu
   },
   state: {
     // 전체 메뉴 초기 get
