@@ -1,8 +1,9 @@
 <template>
     <section class="wrap-ipt">
         <select v-model="grouplist">
-            <option v-for="option in grouplist" v-bind:key="option.group_id">{{option.group_name}}</option>
+            <option v-for="option in grouplist" :value="option.group_id" :key="option.group_id">{{option.group_name}}</option>
         </select>
+        <span>selected: {{grouplist}}</span>
         <input type="text" class="ipt-lunch" v-model="newMenu" v-on:keyup.13="addLunch">
         <button class="btn-add" @click="addLunch">메뉴추가</button>
         <button class="btn-spin" @click="spinlunch">오늘 뭐먹을지 돌려보자</button>
@@ -21,6 +22,7 @@ export default {
   data() {
     return {
       newMenu: null,
+      selected: 1,
     }
   },
   computed: {
@@ -40,8 +42,8 @@ export default {
       get: function() {
         return this.$store.state.menuGroup.groups;
       },
-      set: function() {
-        
+      set: function(val) {
+        this.$store.dispatch('selectMenusOneGroup', val);
       }
     },
   },
