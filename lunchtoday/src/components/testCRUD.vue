@@ -172,6 +172,10 @@ export default {
       this.$store.dispatch('updateGroup', arr);
     },
     searchMenu() {
+      if (this.searchGroupId == null) {
+        return;
+      }
+      
       this.$store.dispatch('selectMenusOneGroup', this.searchGroupId);
     },
     addMenu() {
