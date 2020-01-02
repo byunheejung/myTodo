@@ -56,7 +56,7 @@ export default {
         return;
       } else {
         // vuex store addLunch 커밋하고
-        this.$store.commit('addLunchList', this.newMenu);
+        this.$store.dispatch('insertMenu', this.newMenu);
         // 인풋 초기화
         this.newMenu = null;
       }
