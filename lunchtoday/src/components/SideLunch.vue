@@ -3,7 +3,7 @@
         <div class="list-lunch">
             <div class="current-lunch" v-for="menu in getLunchMenu" :key="menu.group_id">
                 <strong class="name">{{menu.menu_name}}</strong>
-                <button class="btn-delete" @click="removeLunch(n)">삭제</button>
+                <button class="btn-delete" @click="removeLunch(menu)">삭제</button>
             </div>
         </div>
     </aside>
@@ -18,8 +18,17 @@ export default {
     }
   },
   methods: {
-      removeLunch(n) {
-          this.$store.commit('deleteLunch', n);
+      removeLunch(menu) {
+          // 삭제해 삭제해
+          const delArr = {
+            group_id: '',
+            menu_name: ''
+          };
+          
+          delArr.group_id = menu.group_id;
+          delArr.menu_id = menu.menu_id
+
+          this.$store.dispatch('deleteMenu', delArr);
       }
   }
 }
