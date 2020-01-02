@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     getLunchMenu() {
-      return this.$store.state.lunchMenu
+      return this.$store.state.moduleMenu.menus;
     }
   },
   watch: {
@@ -94,7 +94,7 @@ export default {
                 'color' : this.getColor(i, len)
             }
             this.drawCanvas(deg, this.getColor(i, len));  
-            this.drawCanvasText(deg + sliceDeg/2 , lunchMenu[i]);
+            this.drawCanvasText(deg + sliceDeg/2 , lunchMenu[i].menu_name);
             currentArr.push(currentWheel);
             deg += sliceDeg;
         }

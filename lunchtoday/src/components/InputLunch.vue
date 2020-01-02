@@ -34,7 +34,7 @@ export default {
       }
     },
     getLunchMenu() {
-      return this.$store.state.lunchMenu;
+      return this.$store.state.moduleMenu.menus;
     },
     grouplist: {
       get: function() {

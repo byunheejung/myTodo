@@ -47,8 +47,6 @@ export default new Vuex.Store({
   state: {
     // 전체 메뉴 초기 get
     lunchMenu: loadLunchMenu() || [],
-    // options get
-    // options: loadLunchGroup() || [],
     options: testOption,
     saveWheel: [],
     todayLunch: null,
