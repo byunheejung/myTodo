@@ -1,8 +1,8 @@
 <template>
     <aside class="sidebar">
         <div class="list-lunch">
-            <div class="current-lunch" v-for="(lunch, n) in getLunchMenu" v-bind:key="n">
-                <strong class="name">{{lunch}}</strong>
+            <div class="current-lunch" v-for="menu in getLunchMenu" :key="menu.group_id">
+                <strong class="name">{{menu.menu_name}}</strong>
                 <button class="btn-delete" @click="removeLunch(n)">삭제</button>
             </div>
         </div>
@@ -14,7 +14,7 @@ export default {
   name: 'SideLunch',
   computed: {
     getLunchMenu() {
-      return this.$store.state.lunchMenu
+      return this.$store.state.moduleMenu.menus;
     }
   },
   methods: {
