@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const moduleMenu = {
+export const storeMenu = {
     state: {
         menus: [],
         newMenu: [],

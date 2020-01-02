@@ -102,7 +102,7 @@ export default {
   name: 'testCRUD',
   created() {
     // this.$store.dispatch('selectAllGroups');
-    this.$store.dispatch('selectMenusOneGroup', 4);
+    this.$store.dispatch('selectMenusOneGroup', 1);
   },
   data() {
     return {

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const moduleMenuGroup = {
+export const storeMenuGroup = {
     state: {
         groups: [],
         newGroup: [],
