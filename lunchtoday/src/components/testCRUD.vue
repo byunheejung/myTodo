@@ -1,6 +1,6 @@
 <template>
     <section>
-      <div>
+      <!-- <div>
         <label>그룹명</label>
         <input type="text" class="ipt-group" v-model="newGroupName">
         <button class="btn-test-add" @click="addGroup" value="submit">메뉴그룹추가</button>
@@ -9,7 +9,6 @@
       <div>
         <label>그룹ID</label>
         <input type="text" class="ipt-group" v-model="delGroupId">
-        <!-- <input type="text" class="ipt-group" v-model="delGroupName"> -->
         <button class="btn-test-delete" @click="delGroup" value="submit">메뉴그룹삭제</button>
       </div>
 
@@ -39,28 +38,34 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> -->
 
 
       <div>
         <label>메뉴명</label>
         <input type="text" class="ipt-group" v-model="newMenuName">
-        <label>그룹ID</label>
-        <input type="text" class="ipt-group" v-model="groupId">
+        <!-- 일단 그룹 제외하고 메뉴만 추가한다 -->
+        <!-- todo: 추후 작업해보기 -->
+        <!-- <label>그룹ID</label>
+        <input type="text" class="ipt-group" v-model="groupId"> -->
         <button class="btn-test-add" @click="addMenu" value="submit">메뉴추가</button>
       </div>
 
       <div>
-        <label>그룹ID</label>
-        <input type="text" class="ipt-group" v-model="delMenuGroupId">
+         <!-- 일단 그룹 제외하고 메뉴만 삭제한다 -->
+        <!-- todo: 추후 작업해보기 -->
+        <!-- <label>그룹ID</label>
+        <input type="text" class="ipt-group" v-model="delMenuGroupId"> -->
         <label>메뉴ID</label>
         <input type="text" class="ipt-group" v-model="delMenuId">
         <button class="btn-test-delete" @click="delMenu" value="submit">메뉴삭제</button>
       </div>
 
       <div>
-        <label>그룹ID</label>
-        <input type="text" class="ipt-group" v-model="modiMenuGroupId">
+         <!-- 일단 그룹 제외하고 메뉴만 수정한다 -->
+        <!-- todo: 추후 작업해보기 -->
+        <!-- <label>그룹ID</label>
+        <input type="text" class="ipt-group" v-model="modiMenuGroupId"> -->
         <label>메뉴ID</label>
         <input type="text" class="ipt-group" v-model="modiMenuId">
         <label>메뉴명</label>
@@ -68,7 +73,7 @@
         <button class="btn-test-modify" @click="modiMenu" value="submit">메뉴수정</button>
       </div>
 
-      <div>
+      <!-- <div>
         <label>그룹ID</label>
         <input type="text" class="ipt-group" v-model="searchGroupId">
         <button class="btn-test-search" @click="searchMenu">메뉴조회</button>
@@ -92,7 +97,7 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> -->
 
       <div>
         <button class="btn-test-search" @click="searchAllMenu">전체메뉴조회</button>
@@ -123,20 +128,21 @@
 export default {
   name: 'testCRUD',
   created() {
-    this.$store.dispatch('selectMenusOneGroup', 1);
+    // this.$store.dispatch('selectMenusOneGroup', 1);
+    this.$store.dispatch('selectAllMenus');
   },
   data() {
     return {
-      newGroupName: null,
-      delGroupId: null,
-      modiGroupId: null,
-      modiGroupName: null,
-      searchGroupId: null,
+      // newGroupName: null,
+      // delGroupId: null,
+      // modiGroupId: null,
+      // modiGroupName: null,
+      // searchGroupId: null,
       newMenuName: null,
-      groupId: null,
-      delMenuGroupId: null,
+      // groupId: null,
+      // delMenuGroupId: null,
       delMenuId: null,
-      modiMenuGroupId: null,
+      // modiMenuGroupId: null,
       modiMenuId: null,
       modiMenuName: null
     }
@@ -155,106 +161,131 @@ export default {
     }
   },
   methods: {
-    searchGroup() {
-      this.$store.dispatch('selectAllGroups');
-    },
-    addGroup() {
-      if (this.newGroupName == null) {
-        return;
-      }
+    // searchGroup() {
+    //   this.$store.dispatch('selectAllGroups');
+    // },
+    // addGroup() {
+    //   if (this.newGroupName == null) {
+    //     return;
+    //   }
 
-      var groups = this.$store.state.menuGroup.groups;
-      for (var i = 0; i < groups.length; i++) {
-        if (groups[i] == this.newGroupName) {
-          alert('동일한 group명이 있습니다. 다시 확인해 주세요.');
-          return;
-        }
-      }
+    //   var groups = this.$store.state.menuGroup.groups;
+    //   for (var i = 0; i < groups.length; i++) {
+    //     if (groups[i] == this.newGroupName) {
+    //       alert('동일한 group명이 있습니다. 다시 확인해 주세요.');
+    //       return;
+    //     }
+    //   }
 
-      this.$store.dispatch('insertGroup', this.newGroupName);
-    },
-    delGroup() {
-      if (this.delGroupId == null) {
-        return;
-      }
+    //   this.$store.dispatch('insertGroup', this.newGroupName);
+    // },
+    // delGroup() {
+    //   if (this.delGroupId == null) {
+    //     return;
+    //   }
 
-      this.$store.dispatch('deleteGroup', this.delGroupId);
-    },
-    modiGroup() {
-      const arr = {
-        group_id: '',
-        gorup_name: ''
-      };
+    //   this.$store.dispatch('deleteGroup', this.delGroupId);
+    // },
+    // modiGroup() {
+    //   const arr = {
+    //     group_id: '',
+    //     gorup_name: ''
+    //   };
 
-      if (this.modiGroupName == null || this.modiGroupId == null) {
-        return;
-      }
+    //   if (this.modiGroupName == null || this.modiGroupId == null) {
+    //     return;
+    //   }
 
-      arr.group_id = this.modiGroupId;
-      arr.group_name = this.modiGroupName;
+    //   arr.group_id = this.modiGroupId;
+    //   arr.group_name = this.modiGroupName;
 
-      this.$store.dispatch('updateGroup', arr);
-    },
-    searchMenu() {
-      if (this.searchGroupId == null) {
-        return;
-      }
+    //   this.$store.dispatch('updateGroup', arr);
+    // },
+    // searchMenu() {
+    //   if (this.searchGroupId == null) {
+    //     return;
+    //   }
 
-      this.$store.dispatch('selectMenusOneGroup', this.searchGroupId);
-    },
+    //   this.$store.dispatch('selectMenusOneGroup', this.searchGroupId);
+    // },
     searchAllMenu() {
       this.$store.dispatch('selectAllMenus');
     },
     addMenu() {
-      const arr = {
-        group_id: '',
-        menu_name: ''
-      };
-      if (this.newMenuName == null || this.groupId == null) {
+      // const arr = {
+      //   group_id: '',
+      //   menu_name: ''
+      // };
+      // if (this.newMenuName == null || this.groupId == null) {
+      //   return;
+      // }
+
+      // var menus = this.$store.state.moduleMenu.menus;
+      // for (var i = 0; i < menus.length; i++) {
+      //   if (menus[i] == this.newMenuName) {
+      //     alert('동일한 메뉴명이 있습니다. 다시 확인해 주세요.');
+      //     return;
+      //   }
+      // }
+
+      // arr.group_id = this.groupId;
+      // arr.menu_name = this.newMenuName;
+
+      // this.$store.dispatch('insertMenu', arr);
+
+      if (this.newMenuName == null) {
         return;
       }
 
-      var menus = this.$store.state.moduleMenu.menus;
-      for (var i = 0; i < menus.length; i++) {
-        if (menus[i] == this.newMenuName) {
-          alert('동일한 메뉴명이 있습니다. 다시 확인해 주세요.');
-          return;
-        }
-      }
-
-      arr.group_id = this.groupId;
-      arr.menu_name = this.newMenuName;
-
-      this.$store.dispatch('insertMenu', arr);
+      this.$store.dispatch('insertMenu', this.newMenuName);
     },
     delMenu() {
-      const delArr = {
-        group_id: '',
+      // const delArr = {
+      //   group_id: '',
+      //   menu_name: ''
+      // };
+
+      // if (this.delMenuGroupId == null || this.delMenuId == null) {
+      //   return;
+      // }
+
+      // delArr.group_id = this.delMenuGroupId;
+      // delArr.menu_id = this.delMenuId;
+
+
+      // this.$store.dispatch('deleteMenu', delArr);
+      if (this.delMenuId == null) {
+        return;
+      }
+
+      this.$store.dispatch('deleteMenu', this.delMenuId);
+    },
+    modiMenu() {
+      // const modiArr = {
+      //     group_id: '',
+      //     menu_id: '',
+      //     menu_name: ''
+      // };
+
+      // if (this.modiMenuGroupId == null || this.modiMenuId == null || this.modiMenuName == null) {
+      //   return;
+      // }
+
+      // modiArr.group_id = this.modiMenuGroupId;
+      // modiArr.menu_id = this.modiMenuId;
+      // modiArr.menu_name = this.modiMenuName;
+
+      // this.$store.dispatch('updateMenu', modiArr);
+      
+      const modiArr = {
+        menu_id: '',
         menu_name: ''
       };
 
-      if (this.delMenuGroupId == null || this.delMenuId == null) {
-        return;
+      if (this.modiMenuId == null || this.modiMenuName == null) {
+          return;
       }
 
-      delArr.group_id = this.delMenuGroupId;
-      delArr.menu_id = this.delMenuId;
-
-
-      this.$store.dispatch('deleteMenu', delArr);
-    },
-    modiMenu() {
-      const modiArr = {
-          group_id: '',
-          menu_id: '',
-          menu_name: ''
-      };
-
-      if (this.modiMenuGroupId == null || this.modiMenuId == null || this.modiMenuName == null) {
-        return;
-      }
-
-      modiArr.group_id = this.modiMenuGroupId;
       modiArr.menu_id = this.modiMenuId;
       modiArr.menu_name = this.modiMenuName;
 

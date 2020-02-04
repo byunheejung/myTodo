@@ -7,8 +7,22 @@ const Menu = function(menu) {
 };
 
 Menu.create = (newMenu, result) => {
-    sql.query('INSERT INTO MENU_LIST (GROUP_ID, MENU_NAME) VALUES (?, ?)', 
-    [newMenu.group_id, newMenu.menu_name], 
+    // sql.query('INSERT INTO MENU_LIST (GROUP_ID, MENU_NAME) VALUES (?, ?)',
+    // [newMenu.group_id, newMenu.menu_name],
+    // (err, res) => {
+    //     if (err) {
+    //         // eslint-disable-next-line no-console
+    //         console.log('error : ', err);
+    //         result(err, null);
+    //         return;
+    //     }
+
+    //     // eslint-disable-next-line no-console
+    //     console.log('res', { id: res.insertMenu_id, ...newMenu});
+    //     result(null, { id: res.insertMenu_id, ...newMenu});
+    // });
+    sql.query('INSERT INTO MENU_LIST (GROUP_ID, MENU_NAME) VALUES (?, ?)',
+    ['1', newMenu.menu_name],
     (err, res) => {
         if (err) {
             // eslint-disable-next-line no-console
@@ -61,7 +75,7 @@ Menu.getAll = result => {
 
 Menu.updateById = (menuId, newMenu, result) => {
     sql.query('UPDATE MENU_LIST SET MENU_NAME = ? WHERE MENU_ID = ? AND GROUP_ID = ?',
-        [newMenu.menu_name, menuId, newMenu.group_id],
+        [newMenu.menu_name, menuId, '1'],
         (err, res) => {
             if (err) {
                 // eslint-disable-next-line no-console
@@ -85,8 +99,8 @@ Menu.updateById = (menuId, newMenu, result) => {
 };
 
 Menu.remove = (menuId, newMenu, result) => {
-    sql.query('DELETE FROM MENU_LIST WHERE MENU_ID = ? AND GROUP_ID = ?', 
-    [menuId, newMenu.group_id],
+    sql.query('DELETE FROM MENU_LIST WHERE MENU_ID = ? AND GROUP_ID = ?',
+    [menuId, '1'],
     (err, res) => {
         if (err) {
             // eslint-disable-next-line no-console
@@ -112,7 +126,7 @@ Menu.removeAll = result => {
            // eslint-disable-next-line no-console
            console.log('error: ', err);
            result(null, err);
-           return; 
+           return;
         }
 
         // eslint-disable-next-line no-console
