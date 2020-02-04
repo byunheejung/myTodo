@@ -7,7 +7,6 @@
     <router-view/>
   </div>
 </template>
-
 <style>
 #app {
   display: flex;

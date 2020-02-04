@@ -5,7 +5,6 @@
       <InputLunch />
       <LunchCanvas />
       <LunchMap />
-      <testCRUD />
     </section>
     <SideLunch />
   </div>
@@ -18,7 +17,6 @@ import InputLunch from '@/components/InputLunch.vue'
 import SideLunch from '@/components/SideLunch.vue'
 import ViewToday from '@/components/ViewToday.vue'
 import LunchMap from '@/components/LunchMap.vue'
-import testCRUD from '@/components/testCRUD.vue'
 
 export default {
   name: 'home',
@@ -27,8 +25,10 @@ export default {
     InputLunch,
     SideLunch,
     ViewToday,
-    LunchMap,
-    testCRUD
+    LunchMap
+  },
+  created() {
+    this.$store.dispatch('selectAllMenus');
   }
 }
 </script>
