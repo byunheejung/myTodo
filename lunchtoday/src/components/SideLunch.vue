@@ -12,23 +12,19 @@
 <script>
 export default {
   name: 'SideLunch',
+  created(){
+    this.$store.dispatch('selectAllMenus');
+  },
   computed: {
-    getLunchMenu() {
-      return this.$store.state.moduleMenu.menus;
+    getLunchMenu: {
+      get: function() {
+        return this.$store.state.moduleMenu.allMenus;
+      }
     }
   },
   methods: {
       removeLunch(menu) {
-          // 삭제해 삭제해
-          const delArr = {
-            group_id: '',
-            menu_name: ''
-          };
-
-          delArr.group_id = menu.group_id;
-          delArr.menu_id = menu.menu_id
-
-          this.$store.dispatch('deleteMenu', delArr);
+          this.$store.dispatch('deleteMenu', menu.menu_id);
       }
   }
 }

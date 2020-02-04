@@ -10,6 +10,9 @@
 <script>
 export default {
   name: 'LunchCanvas',
+  created() {
+    this.$store.dispatch('selectAllMenus');
+  },
   mounted() {
     this.drawLunchCanvas();
   },
@@ -18,7 +21,7 @@ export default {
   },
   computed: {
     getLunchMenu() {
-      return this.$store.state.moduleMenu.menus;
+      return this.$store.state.moduleMenu.allMenus;
     }
   },
   watch: {
