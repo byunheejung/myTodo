@@ -4,9 +4,15 @@ export const storeMenu = {
     state: {
         menus: [],
         newMenu: [],
-        updateMenu: []
+        updateMenu: [],
+        allMenus: []
     },
     mutations: {
+        SUCCESS_GET_ALL_MENUS(state, data) {
+            state.allMenus = data;
+            // eslint-disable-next-line no-console
+            console.log('SUCCESS_GET_ALL_MENUS', data);
+        },
         SUCCESS_GET_MENUS (state, data) {
             state.menus = data;
             // eslint-disable-next-line no-console
@@ -103,6 +109,17 @@ export const storeMenu = {
                 console.log('UPDATE_MENU_BEFORE', res);
                 commit('UPDATE_MENU', context.menu_name);
             })
-        }
+        },
+         // get all menus
+         selectAllMenus ( {commit} ) {
+            axios
+            .get('http://42.243.134.40:3000/api/menu/menuAll')
+            .then((res) => {
+                commit('SUCCESS_GET_ALL_MENUS', res.data);
+            })
+            .catch((res) => {
+                commit('FAIL_GET_ALL_GROUPS', res);
+            })
+        },
     }
 }

@@ -44,20 +44,20 @@ Menu.findById = (groupId, result) => {
     });
 };
 
-// Menu.getAll = result => {
-//     sql.query('SELECT * FROM MENU_LIST', (err, res) => {
-//         if (err) {
-//             // eslint-disable-next-line no-console
-//             console.log('error :', err);
-//             result(null, err);
-//             return;
-//         }
+Menu.getAll = result => {
+    sql.query('SELECT * FROM MENU_LIST', (err, res) => {
+        if (err) {
+            // eslint-disable-next-line no-console
+            console.log('error :', err);
+            result(null, err);
+            return;
+        }
 
-//         // eslint-disable-next-line no-console
-//         console.log('menu_list', res);
-//         result(null, res);
-//     });
-// }
+        // eslint-disable-next-line no-console
+        console.log('menu_list', res);
+        result(null, res);
+    });
+}
 
 Menu.updateById = (menuId, newMenu, result) => {
     sql.query('UPDATE MENU_LIST SET MENU_NAME = ? WHERE MENU_ID = ? AND GROUP_ID = ?',

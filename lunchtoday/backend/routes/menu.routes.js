@@ -6,7 +6,7 @@ const menu = require('../controllers/menuController.js');
 router.post('/menu', menu.create);
 
 // retrieve all groups
-// router.get('/menu', menu.findAll);
+router.get('/menuAll', menu.findAll);
 
 // retrieve a single menu with menuId
 router.get('/menu/:menuId', menu.findOne);

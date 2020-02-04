@@ -4,7 +4,7 @@
         <label>그룹명</label>
         <input type="text" class="ipt-group" v-model="newGroupName">
         <button class="btn-test-add" @click="addGroup" value="submit">메뉴그룹추가</button>
-      </div> 
+      </div>
 
       <div>
         <label>그룹ID</label>
@@ -13,7 +13,7 @@
         <button class="btn-test-delete" @click="delGroup" value="submit">메뉴그룹삭제</button>
       </div>
 
-      <div>  
+      <div>
         <label>그룹ID</label>
         <input type="text" class="ipt-group" v-model="modiGroupId">
         <label>그룹명</label>
@@ -23,7 +23,7 @@
 
       <div>
         <button class="btn-test-search" @click="searchGroup">메뉴그룹조회</button>
-      </div>  
+      </div>
       <div class="container">
         <table class="table test-table">
           <thead>
@@ -48,7 +48,7 @@
         <label>그룹ID</label>
         <input type="text" class="ipt-group" v-model="groupId">
         <button class="btn-test-add" @click="addMenu" value="submit">메뉴추가</button>
-      </div> 
+      </div>
 
       <div>
         <label>그룹ID</label>
@@ -58,7 +58,7 @@
         <button class="btn-test-delete" @click="delMenu" value="submit">메뉴삭제</button>
       </div>
 
-      <div>  
+      <div>
         <label>그룹ID</label>
         <input type="text" class="ipt-group" v-model="modiMenuGroupId">
         <label>메뉴ID</label>
@@ -72,7 +72,7 @@
         <label>그룹ID</label>
         <input type="text" class="ipt-group" v-model="searchGroupId">
         <button class="btn-test-search" @click="searchMenu">메뉴조회</button>
-      </div>  
+      </div>
       <div class="container">
         <table class="table test-table">
           <thead>
@@ -93,15 +93,36 @@
           </tbody>
         </table>
       </div>
-           
-    </section>    
+
+      <div>
+        <button class="btn-test-search" @click="searchAllMenu">전체메뉴조회</button>
+      </div>
+      <div class="container">
+        <table class="table test-table">
+          <thead>
+            <tr>
+              <th>menu_id</th>
+              <th>menu_name</th>
+              <th>hide_yn</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="menu in menuAllList" :key="menu.menu_id">
+              <td>{{ menu.menu_id }}</td>
+              <td>{{ menu.menu_name }}</td>
+              <td>{{ menu.hide_yn }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
 </template>
 
 <script>
 export default {
   name: 'testCRUD',
   created() {
-    // this.$store.dispatch('selectAllGroups');
     this.$store.dispatch('selectMenusOneGroup', 1);
   },
   data() {
@@ -128,6 +149,9 @@ export default {
       // return this.$store.state.menuGroup.groups;
       // return this.$store.state.menus;
       return this.$store.state.moduleMenu.menus;
+    },
+    menuAllList() {
+      return this.$store.state.moduleMenu.allMenus;
     }
   },
   methods: {
@@ -175,8 +199,11 @@ export default {
       if (this.searchGroupId == null) {
         return;
       }
-      
+
       this.$store.dispatch('selectMenusOneGroup', this.searchGroupId);
+    },
+    searchAllMenu() {
+      this.$store.dispatch('selectAllMenus');
     },
     addMenu() {
       const arr = {

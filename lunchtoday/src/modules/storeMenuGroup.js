@@ -46,7 +46,7 @@ export const storeMenuGroup = {
             if (!context) {
                 return;
             }
-    
+
             axios
             .post('http://42.243.134.40:3000/api/group/menuGroup', {
                 group_name: context
@@ -64,7 +64,7 @@ export const storeMenuGroup = {
             if (!group_id) {
                 return;
             }
-    
+
             axios
             .delete('http://42.243.134.40:3000/api/group/menuGroup/' + group_id)
             .then((res) => {
@@ -78,7 +78,7 @@ export const storeMenuGroup = {
             if (!context) {
                 return;
             }
-    
+
             axios
             .put('http://42.243.134.40:3000/api/group/menuGroup/' + context.group_id, {
                 group_id: context.group_id,

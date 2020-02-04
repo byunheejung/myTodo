@@ -29,17 +29,17 @@ exports.create = (req, res) => {
 }
 
 // retrieve all menus from the database;
-// exports.findAll = (req, res) => {
-//     Menu.getAll((err, data) => {
-//         if (err) {
-//             res.status(500).send({
-//                 message: err.message
-//             });
-//         } else {
-//             res.send(data);
-//         }
-//     })
-// };
+exports.findAll = (req, res) => {
+    Menu.getAll((err, data) => {
+        if (err) {
+            res.status(500).send({
+                message: err.message
+            });
+        } else {
+            res.send(data);
+        }
+    })
+};
 
 // find a single menu with a menuId
 exports.findOne = (req, res) => {
