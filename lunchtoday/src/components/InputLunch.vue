@@ -1,12 +1,13 @@
 <template>
     <section class="wrap-ipt">
-        <select v-model="grouplist">
+        <!-- <select v-model="grouplist">
             <option v-for="option in grouplist" :value="option.group_id" :key="option.group_id">{{option.group_name}}</option>
-        </select>
-        <span>selected: {{grouplist}}</span>
+        </select> -->
+        
         <input type="text" class="ipt-lunch" v-model="newMenu" v-on:keyup.13="addLunch">
         <button class="btn-add" @click="addLunch">메뉴추가</button>
         <button class="btn-spin" @click="spinlunch">오늘 뭐먹을지 돌려보자</button>
+        
     </section>
 </template>
 
@@ -44,6 +45,7 @@ export default {
       },
       set: function(val) {
         this.$store.dispatch('selectMenusOneGroup', val);
+        this.selected = val;
       }
     },
   },
@@ -54,14 +56,26 @@ export default {
   },
   methods: {
     addLunch() {
-      if(this.newMenu == null){
+      const arr = {
+        group_id: '',
+        menu_name: ''
+      };
+      if (this.newMenuName == null || this.groupId == null) {
         return;
-      } else {
-        // vuex store addLunch 커밋하고
-        this.$store.dispatch('insertMenu', this.newMenu);
-        // 인풋 초기화
-        this.newMenu = null;
       }
+
+      var menus = this.$store.state.moduleMenu.menus;
+      for (var i = 0; i < menus.length; i++) {
+        if (menus[i] == this.newMenuName) {
+          alert('동일한 메뉴명이 있습니다. 다시 확인해 주세요.');
+          return;
+        }
+      }
+
+      arr.group_id = this.selected;
+      arr.menu_name = this.newMenuName;
+
+      this.$store.dispatch('insertMenu', arr);
     },
     spinlunch() {
       let rand2 = Math.floor(Math.abs(Math.random() * 10000)) + (360/this.getLunchMenu.length) + 1;
