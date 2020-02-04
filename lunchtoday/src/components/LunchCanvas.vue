@@ -10,9 +10,6 @@
 <script>
 export default {
   name: 'LunchCanvas',
-  created() {
-    this.$store.dispatch('selectAllMenus');
-  },
   mounted() {
     this.drawLunchCanvas();
   },

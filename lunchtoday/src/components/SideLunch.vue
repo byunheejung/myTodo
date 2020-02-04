@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'SideLunch',
-  created(){
+  updated(){
     this.$store.dispatch('selectAllMenus');
   },
   computed: {
